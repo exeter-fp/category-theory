@@ -1,0 +1,8 @@
+-- Haskell Playground 1.0
+
+
+fib 10
+
+let memoFib = memoize fib
+
+memoFib 10
