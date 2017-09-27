@@ -13,10 +13,10 @@
   considered to be a function that 'returns' ⊥.
 
 - In Haskell, it's also possible to explicitly return bottom, e.g.:
-```haskell
-f :: Bool -> Bool
-f = undefined
-```
+    ```haskell
+    f :: Bool -> Bool
+    f = undefined
+    ```
 
 - As a result, the category of Haskell types and functions is often referred to
   as `Hask`, rather than `Set`.
