@@ -26,29 +26,40 @@ f . g :: A -> C
 
 ## Challenges
 
-1. See [01-challenges.playground](01-challenges.playground/Contents.swift)
+1. Implement, as best as you can, the identity function in your favorite
+   language (or the second favorite, if your favorite language happens to be
+   Haskell).
 
-2. See [01-challenges.playground](01-challenges.playground/Contents.swift)
+   See [01-the-essence-of-composition-challenges.playground](01-the-essence-of-composition-challenges.playground/Contents.swift)
 
-3. See [01-challenges.playground](01-challenges.playground/Contents.swift)
+2. Implement the composition function in your favorite language. It takes two
+   functions as arguments and returns a function that is their composition.
+
+   See [01-the-essence-of-composition-challenges.playground](01-the-essence-of-composition-challenges.playground/Contents.swift)
+
+3. Write a program that tries to test that your composition function respects
+   identity.
+
+   See [01-the-essence-of-composition-challenges.playground](01-the-essence-of-composition-challenges.playground/Contents.swift)
 
 4. _Is the world-wide web a category in any sense? Are links morphisms?_
 
-It's tempting to count web pages as objects and links from that page as
-morphisms, but this doesn't form a category since:
+   It's tempting to count web pages as objects and links from that page as
+   morphisms, but this doesn't form a category since:
 
-a) Not every page necessarily has a link to itself (which would be the identity
-morphism for that object).
-b) The existence of a link from page `A` to page `B`, and a link from page `B`
-to page `C` doesn't imply that there's necessarily a link from page `A` to page
-`C`.
+   a) Not every page necessarily has a link to itself (which would be the
+   identity morphism for that object).
+
+   b) The existence of a link from page `A` to page `B`, and a link from page
+   `B` to page `C` doesn't imply that there's necessarily a link from page `A`
+   to page `C`.
 
 5. Is Facebook a category, with people as objects and friendships as morphisms?
 
-No, for reasons similar to the above - friendships aren't necessarily
-composable, nor is a person a friend with themselves.
+   No, for reasons similar to the above - friendships aren't necessarily
+   composable, nor is a person a friend with themselves.
 
 6. When is a directed graph a category?
 
-When every node in the graph has an edge to itself and, whenever there are edges
-`E1(V1, V2)` and `E2(V2, V3)` there is also an edge `E3(V1,V3)`.
+   When every node in the graph has an edge to itself and, whenever there are
+   edges `E1(V1, V2)` and `E2(V2, V3)` there is also an edge `E3(V1,V3)`.

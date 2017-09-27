@@ -53,15 +53,15 @@ f = undefined
    first time you call it, but on subsequent calls, with the same argument, you
    should get the result immediately
 
-   See [02-challenges.playground](02-challenges.playground/Contents.swift)
+   See [02-types-and-functions-challenges.playground](02-types-and-functions-challenges.playground/Contents.swift)
 
 2. Try to memoize a function from your standard library that you normally use to
    produce random numbers. Does it work?
 
-   See [02-challenges.playground](02-challenges.playground/Contents.swift)
+   See [02-types-and-functions-challenges.playground](02-types-and-functions-challenges.playground/Contents.swift)
 
 3. Most random number generators can be initialized with a seed. Implement a
    function that takes a seed, calls the random number generator with that seed,
    and returns the result. Memoize that function. Does it work?
 
-   See [02-challenges.playground](02-challenges.playground/Contents.swift)
+   See [02-types-and-functions-challenges.playground](02-types-and-functions-challenges.playground/Contents.swift)
