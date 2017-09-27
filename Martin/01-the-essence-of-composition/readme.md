@@ -26,19 +26,19 @@ f . g :: A -> C
 
 ## Challenges
 
-1. Implement, as best as you can, the identity function in your favorite
+1. _Implement, as best as you can, the identity function in your favorite
    language (or the second favorite, if your favorite language happens to be
-   Haskell).
+   Haskell)._
 
    See [01-the-essence-of-composition-challenges.playground](01-the-essence-of-composition-challenges.playground/Contents.swift)
 
-2. Implement the composition function in your favorite language. It takes two
-   functions as arguments and returns a function that is their composition.
+2. _Implement the composition function in your favorite language. It takes two
+   functions as arguments and returns a function that is their composition._
 
    See [01-the-essence-of-composition-challenges.playground](01-the-essence-of-composition-challenges.playground/Contents.swift)
 
-3. Write a program that tries to test that your composition function respects
-   identity.
+3. _Write a program that tries to test that your composition function respects
+   identity._
 
    See [01-the-essence-of-composition-challenges.playground](01-the-essence-of-composition-challenges.playground/Contents.swift)
 
@@ -54,12 +54,12 @@ f . g :: A -> C
    `B` to page `C` doesn't imply that there's necessarily a link from page `A`
    to page `C`.
 
-5. Is Facebook a category, with people as objects and friendships as morphisms?
+5. _Is Facebook a category, with people as objects and friendships as morphisms?_
 
    No, for reasons similar to the above - friendships aren't necessarily
    composable, nor is a person a friend with themselves.
 
-6. When is a directed graph a category?
+6. _When is a directed graph a category?_
 
    When every node in the graph has an edge to itself and, whenever there are
    edges `E1(V1, V2)` and `E2(V2, V3)` there is also an edge `E3(V1,V3)`.
