@@ -65,3 +65,42 @@
    and returns the result. Memoize that function. Does it work?_
 
    See [02-types-and-functions-challenges.playground](02-types-and-functions-challenges.playground/Contents.swift)
+
+4. _Which of these C++ functions are pure? Try to memoize them and observe what
+   happens when you call them multiple times: memoized and not.
+
+    1.  The factorial function from the example in the text._ - Pure
+
+    2. `std::getchar()` - Impure
+
+    3.
+        ```cpp
+        f() {
+          std::cout << "Hello!" << std::endl;
+          return true;
+        }
+        ```
+
+       Impure, because of the side-effect sending content to `std::cout`
+
+    4.
+        ```cpp
+        int f(int x) {
+            static int y = 0;
+            y += x;
+            return y;
+        }
+        ```
+
+        Impure, because the `y` is static
+
+5. _How many different functions are there from Bool to Bool? Can you implement
+   them all?_
+
+   See [02-types-and-functions-challenges.playground](02-types-and-functions-challenges.playground/Contents.swift)
+
+6. _Draw a picture of a category whose only objects are the types Void, ()
+   (unit), and Bool; with arrows corresponding to all possible functions
+   between these types. Label the arrows with the names of the functions._
+
+   ![challenge06](challenge-06.jpg)

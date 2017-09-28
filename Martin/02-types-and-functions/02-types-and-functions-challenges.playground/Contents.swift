@@ -107,3 +107,27 @@ let memoisedCallGenerator = memoize(f: callGenerator)
 memoisedCallGenerator(42)
 memoisedCallGenerator(42)
 memoisedCallGenerator(666)
+
+
+/*
+ Challenge 5
+ 
+ How many different functions are there from Bool to Bool? Can you
+ implement them all?
+*/
+
+func alwaysTrue(_: Bool) -> Bool {
+    return true
+}
+
+func alwaysFalse(_: Bool) -> Bool {
+    return false
+}
+
+func same(x: Bool) -> Bool {
+    return x
+}
+
+func not(x: Bool) -> Bool {
+    return not(x: x)
+}
