@@ -69,11 +69,11 @@
 4. _Which of these C++ functions are pure? Try to memoize them and observe what
    happens when you call them multiple times: memoized and not.
 
-    1.  The factorial function from the example in the text._ - Pure
+    1. _The factorial function from the example in the text._ - Pure
 
-    2. `std::getchar()` - Impure
+    2. _The function_ `std::getchar()` - Impure
 
-    3.
+    3. _This function_:
         ```cpp
         f() {
           std::cout << "Hello!" << std::endl;
@@ -83,7 +83,7 @@
 
        Impure, because of the side-effect sending content to `std::cout`
 
-    4.
+    4. _This function_:
         ```cpp
         int f(int x) {
             static int y = 0;
@@ -104,3 +104,9 @@
    between these types. Label the arrows with the names of the functions._
 
    ![challenge06](challenge-06.jpg)
+   
+   Discussion points (see [Challenges02.hs](Challenges02.hs)):
+   
+   * For `Void`, What does `id :: a -> a` mean and is it a distinct function from `absurd :: a -> a`?
+   * Since `Hask` is a category, `Void` must have an identity morphism - is that `id` or is it `absurd`?
+   * Is there such a function as `unit :: Void -> ()`
