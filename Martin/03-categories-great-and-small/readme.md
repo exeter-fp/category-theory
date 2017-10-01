@@ -94,3 +94,36 @@
 
 ## Challenges
 
+1. _Generate a free category from:_
+
+    1. _A graph with one node and no edges_
+
+    2. _A graph with one node and one (directed) edge (hint: this edge can be
+       composed with itself)_
+
+    3. _A graph with two nodes and a single arrow between them_
+
+    4. _A graph with a single node and 26 arrows marked with the letters of the
+       alphabet: a, b, c ... z._
+
+
+2. _What kind of order is this?_
+
+    1. _A set of sets with the inclusion relation: A is included in B if every
+       element of A is also an element of B._
+
+    2. _C++ types with the following subtyping relation: T1 is a subtype of T2
+       if a pointer to T1 can be passed to a function that expects a pointer to
+       T2 without triggering a compilation error._
+
+
+3. _Considering that `Bool` is a set of two values `True` and `False`, show
+   that it forms two (set-theoretical) monoids with respect to, respectively,
+   operator `&&` (`AND`) and `||` (`OR`)._
+
+
+4. _Represent the `Bool` monoid with the `AND` operator as a category: List the
+   morphisms and their rules of composition._
+
+
+5. _Represent addition modulo 3 as a monoid category._
