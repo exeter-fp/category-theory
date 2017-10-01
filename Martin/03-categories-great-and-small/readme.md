@@ -56,15 +56,15 @@
 
 - In Haskell, it's represented by the `Monoid` typeclass, although this can't
   represent the additional monoidal properties:
-```haskell
-class Monoid m  where
-    mempty  :: m
-    mappend :: m -> m -> m
+    ```haskell
+    class Monoid m  where
+        mempty  :: m
+        mappend :: m -> m -> m
 
-instance Monoid String where
-    mempty  = ""
-    mappend = (++)
-```
+    instance Monoid String where
+        mempty  = ""
+        mappend = (++)
+    ```
 
 
 ### Monoid as Category
@@ -88,7 +88,7 @@ instance Monoid String where
     - <code>id<sub>m</sub></code> corresponds to `mempty`
     - `g . f` corresponds to `mappend f g`
 
-    ![Monoid as Category and Set](images/monoid-as-category-and-set.jpg)
+        ![Monoid as Category and Set](images/monoid-as-category-and-set.jpg)
 
 
 
