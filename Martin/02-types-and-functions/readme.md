@@ -67,7 +67,7 @@
    See [02-types-and-functions-challenges.playground](02-types-and-functions-challenges.playground/Contents.swift)
 
 4. _Which of these C++ functions are pure? Try to memoize them and observe what
-   happens when you call them multiple times: memoized and not.
+   happens when you call them multiple times: memoized and not._
 
     1. _The factorial function from the example in the text._ - Pure
 

@@ -98,13 +98,37 @@
 
     1. _A graph with one node and no edges_
 
+       This consists of just the single object `a` and the identity morphism
+       <code>id<sub>a</sub></code>:
+
+        ![challenges-03-1-1](images/challenges-03-1-1.png)
+
     2. _A graph with one node and one (directed) edge (hint: this edge can be
        composed with itself)_
 
+       This consists of the single object `a`, its identity
+       <code>id<sub>a</sub></code> and an infinite number of arrows from `a ->
+       a`, corresponding to repeated applications of `e`:
+
+        ![challenges-03-1-2](images/challenges-03-1-2.png)
+
     3. _A graph with two nodes and a single arrow between them_
+
+       This consists of the two objects `a` and `b`, each object's identity, and the single
+       arrow.  There are no more arrows like there were in (2), because the end
+       of arrow `e` doesn't coincide with the start:
+
+        ![challenges-03-1-3](images/challenges-03-1-3.png)
 
     4. _A graph with a single node and 26 arrows marked with the letters of the
        alphabet: a, b, c ... z._
+
+       This consists of the single object `a`, its identity
+       <code>id<sub>a</sub></code> and an infinite number of arrows,
+       corresponding to the various combinations (of any length) of the arrows
+       `a` to `z`:
+
+        ![challenges-03-1-4](images/challenges-03-1-4.png)
 
 
 2. _What kind of order is this?_
