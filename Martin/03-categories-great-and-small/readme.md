@@ -136,18 +136,37 @@
     1. _A set of sets with the inclusion relation: A is included in B if every
        element of A is also an element of B._
 
+       A _partial order_.  It's not total, because the subset relation doesn't
+       hold either way between the sets `{1, 2}` and `{3, 4}`
+
     2. _C++ types with the following subtyping relation: T1 is a subtype of T2
        if a pointer to T1 can be passed to a function that expects a pointer to
        T2 without triggering a compilation error._
 
+       A _partial order_.  Again it's not total, because we could have two
+       incompatible types that aren't related to each other.  On the other hand,
+       I'm wondering whether something to do with the C++ type system means that
+       we can have types `T1` and `T2` where `T1` is a subtype of `T2` and vice
+       versa, but `T1` and `T2` aren't the same type?
 
 3. _Considering that `Bool` is a set of two values `True` and `False`, show
    that it forms two (set-theoretical) monoids with respect to, respectively,
    operator `&&` (`AND`) and `||` (`OR`)._
 
+    See [Challenges03.hs](Challenges03.hs)
 
 4. _Represent the `Bool` monoid with the `AND` operator as a category: List the
    morphisms and their rules of composition._
 
+    Objects     : A single object representing the set `{True, False}`
+    Morphisms   : Two morphisms `(AND True)` (the identity) and `(&& False)`
+    Composition :
+        `(AND True)  . (AND True)  = (AND True)`
+        `(AND True)  . (AND False) = (AND False)`
+        `(AND False) . (AND True)  = (AND False)`
+        `(AND False) . (AND False) = (AND False)`
 
 5. _Represent addition modulo 3 as a monoid category._
+
+    A single object - the set `{0, 1, 2}` with morphisms `(+ 0)` (= `id`), `(+
+    1)` and `(+ 2)`.
