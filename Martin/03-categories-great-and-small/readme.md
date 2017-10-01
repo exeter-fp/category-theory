@@ -47,5 +47,50 @@
   _hom-set_, denoted `C(a, b)` or <code>Hom<sub>C</sub>(a, b)</code>.
 
 
+### Monoid as Set
+
+- A _monoid_ is a set with a binary operation that is _associative_ and has an
+  _identity_:
+    - e.g. the set of integers under addition, with identity 0
+    - or the set of all strings under concatenation, with identity `""`
+
+- In Haskell, it's represented by the `Monoid` typeclass, although this can't
+  represent the additional monoidal properties:
+```haskell
+class Monoid m  where
+    mempty  :: m
+    mappend :: m -> m -> m
+
+instance Monoid String where
+    mempty  = ""
+    mappend = (++)
+```
+
+
+### Monoid as Category
+
+- To move from set-based language to category-based language, think of the
+  application of the binary operator as shifting elements around the set:
+    - e.g. `(+ 5)` maps `0 -> 5`, `1 -> 6`, `2 -> 7` etc.
+    - for any number `n` there is a function 'add n'
+    - These compose easily - `(+ 5) . (+ 7) = (+ 12)`
+    - The identity is just - `(+ 0)`
+
+- Now, we can think of the set of integers as being a single object with a bunch
+  of morphisms - one 'adder' for each member of the set:
+    - So, a monoid is just a single-object category
+
+- Conversely, given a categorical monoid `M` (a single object `a` with morphisms),
+  then we have the _hom-set_ `M(m, m)` consisting of all the morphisms from `a`
+  to `a`.
+
+- `M(m, m)` is then a 'monoid-as-set':
+    - <code>id<sub>m</sub></code> corresponds to `mempty`
+    - `g . f` corresponds to `mappend f g`
+
+    ![Monoid as Category and Set](images/monoid-as-category-and-set.jpg)
+
+
+
 ## Challenges
 
