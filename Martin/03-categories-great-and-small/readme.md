@@ -158,13 +158,13 @@
 4. _Represent the `Bool` monoid with the `AND` operator as a category: List the
    morphisms and their rules of composition._
 
-    Objects     : A single object representing the set `{True, False}`
-    Morphisms   : Two morphisms `(AND True)` (the identity) and `(&& False)`
-    Composition :
-        `(AND True)  . (AND True)  = (AND True)`
-        `(AND True)  . (AND False) = (AND False)`
-        `(AND False) . (AND True)  = (AND False)`
-        `(AND False) . (AND False) = (AND False)`
+    - Objects     : A single object representing the set `{True, False}`
+    - Morphisms   : Two morphisms `(AND True)` (the identity) and `(&& False)`
+    - Composition :
+        - `(AND True)  . (AND True)  = (AND True)`
+        - `(AND True)  . (AND False) = (AND False)`
+        - `(AND False) . (AND True)  = (AND False)`
+        - `(AND False) . (AND False) = (AND False)`
 
 5. _Represent addition modulo 3 as a monoid category._
 
