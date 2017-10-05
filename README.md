@@ -4,7 +4,6 @@ Notes and challenges from studying https://bartoszmilewski.com/2014/10/28/catego
 
 See repo for the mobi and epub versions of his blog.
 
-
 ## Philip Wadler links
 
 - [Category theory for the working hacker](https://www.youtube.com/watch?v=V10hzjgoklA)
@@ -23,3 +22,6 @@ I think this is the bible of category theory :
 ## David I. Spivak
 
 - [Category theory for the Sciences](https://github.com/mmai/Category-Theory-for-the-Sciences)
+
+## Mark Seemann
+ - [From design patterns to category theory](http://blog.ploeh.dk/2017/10/04/from-design-patterns-to-category-theory/)
