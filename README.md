@@ -27,10 +27,11 @@ I think this is the bible of category theory :
 
 - [From design patterns to category theory](http://blog.ploeh.dk/2017/10/04/from-design-patterns-to-category-theory/)
 
-## Other videos
+## Other Videos
 
 - [Category theory: a framework for reasoning](https://www.youtube.com/embed/ba_hon70qbg)
+- [Category Theory: The Beginner’s Introduction - annoying, but gives examples of musical categories](https://www.youtube.com/watch?v=P6DvIfTJhx8&app=desktop).
 
-## Related
+## Related
 
 - [Blog article about ADTs, differentation of types, etc](http://chris-taylor.github.io/blog/2013/02/10/the-algebra-of-algebraic-data-types/)
