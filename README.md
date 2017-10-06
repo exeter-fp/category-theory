@@ -35,3 +35,8 @@ I think this is the bible of category theory :
 ## Related
 
 - [Blog article about ADTs, differentation of types, etc](http://chris-taylor.github.io/blog/2013/02/10/the-algebra-of-algebraic-data-types/)
+
+## Haskell
+
+- [Hask](https://wiki.haskell.org/Hask)
+- [Where do values fit in Category of Hask?](https://stackoverflow.com/questions/17380379/where-do-values-fit-in-category-of-hask#17381019)
