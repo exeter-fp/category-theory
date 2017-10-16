@@ -2,5 +2,10 @@
 <Timeline
    version = "3.0">
    <TimelineItems>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "file:///Users/mrist/Documents/devel/category-theory/Martin/04-kleisli-categories/04-kleisli-categories.playground#CharacterRangeLen=33&amp;CharacterRangeLoc=1502&amp;EndingColumnNumber=0&amp;EndingLineNumber=68&amp;StartingColumnNumber=1&amp;StartingLineNumber=67&amp;Timestamp=529856925.175623"
+         selectedRepresentationIndex = "0"
+         shouldTrackSuperviewWidth = "NO">
+      </LoggerValueHistoryTimelineItem>
    </TimelineItems>
 </Timeline>

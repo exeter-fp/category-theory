@@ -40,6 +40,61 @@
     ```
 
 
+### String manipulation with log composition
+
+- Let's say we have two functions that convert and tokenise strings:
+    ```swift
+    func toUpper(s: String) -> String {
+        return s.uppercased()
+    }
+
+    func toWords(s: String) -> [String] {
+        return s.components(separatedBy: " ")
+    }
+    ```
+
+- Say we want each of these to return a log message - we'll get them to return a
+  struct (which we'll call `Writer<A>`) which is like the tuple we returned
+  before:
+    ```swift
+    struct Writer<T> {
+        var t: T
+        var log: String
+    }
+
+    func toUpper(s: String) -> Writer<String> {
+        return Writer(t: s.uppercased(), log: "uppercased() ")
+    }
+
+    func toWords(s: String) -> Writer<[String]> {
+        return Writer(t: s.components(separatedBy: " "), log: "words() ")
+    }
+    ```
+
+- Now, to compose both functions, we can do:
+    ```swift
+    func process(s: String) -> Writer<[String]> {
+        let p1 = toUpper(s: s)
+        let p2 = toWords(s: p1.a)
+        return Writer(a: p2.a, log: p1.log + p2.log)
+    }
+    ```
+
+- To generically compose any two functions that return a `Writer<T>`:
+    ```swift
+    func comp<A, B, C>(f: @escaping (A) -> Writer<B>,
+                       g: @escaping (B) -> Writer<C>)
+                   -> ((A) -> Writer<C>) {
+        return {a in
+            let b = f(a).t
+            return Writer(t: g(b).t, log: f(a).log + g(b).log)
+        }
+    }
+
+    > let upperWords = comp(f: toUpper, g: toWords)
+    > upperWords("the quick brown fox")
+    ```
+
 
 
 

@@ -31,28 +31,41 @@ func nicerPureNegateAndLog(b: Bool) -> (Bool, String) {
 }
 
 
-struct Writer<A> {
-    var a: A
+struct Writer<T> {
+    var t : T
     var log: String
 }
 
 func toUpper(s: String) -> Writer<String> {
-    return Writer(a: s.uppercased(), log: "uppercased() ")
+    return Writer(t: s.uppercased(), log: "uppercased() ")
 }
 
 func toWords(s: String) -> Writer<[String]> {
-    return Writer(a: s.components(separatedBy: " "), log: "words() ")
+    return Writer(t: s.components(separatedBy: " "), log: "words() ")
 }
 
 
 func process(s: String) -> Writer<[String]> {
     let p1 = toUpper(s: s)
-    let p2 = toWords(s: p1.a)
-    return Writer(a: p2.a, log: p1.log + p2.log)
+    let p2 = toWords(s: p1.t)
+    return Writer(t: p2.t, log: p1.log + p2.log)
 }
 
 process(s: "the quick brown fox")
 
+
+func comp<A, B, C>(f: @escaping (A) -> Writer<B>,
+                   g: @escaping (B) -> Writer<C>)
+    -> ((A) -> Writer<C>) {
+        return {a in
+            let b = f(a).t
+            return Writer(t: g(b).t, log: f(a).log + g(b).log)
+        }
+}
+
+let upperWords = comp(f: toUpper, g: toWords)
+
+upperWords("the quick brown fox")
 
 
 
