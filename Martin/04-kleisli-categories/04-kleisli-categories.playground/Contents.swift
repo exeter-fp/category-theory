@@ -1,5 +1,3 @@
-//: Playground - noun: a place where people can play
-
 import UIKit
 
 var logger = ""
@@ -66,14 +64,3 @@ func comp<A, B, C>(f: @escaping (A) -> Writer<B>,
 let upperWords = comp(f: toUpper, g: toWords)
 
 upperWords("the quick brown fox")
-
-
-
-
-
-
-
-
-
-
-
