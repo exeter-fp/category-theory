@@ -29,11 +29,15 @@ func nicerPureNegateAndLog(b: Bool) -> (Bool, String) {
 }
 
 
+
+// A structure that represents a value, together with a log message
 struct Writer<T> {
     var t : T
     var log: String
 }
 
+
+// Simple functions that also return a log message
 func toUpper(s: String) -> Writer<String> {
     return Writer(t: s.uppercased(), log: "uppercased() ")
 }
@@ -43,6 +47,7 @@ func toWords(s: String) -> Writer<[String]> {
 }
 
 
+// This is how we compose the specific functions above, to include log concatenation
 func process(s: String) -> Writer<[String]> {
     let p1 = toUpper(s: s)
     let p2 = toWords(s: p1.t)
@@ -52,6 +57,7 @@ func process(s: String) -> Writer<[String]> {
 process(s: "the quick brown fox")
 
 
+// The general composition function for Writer<T>
 func comp<A, B, C>(f: @escaping (A) -> Writer<B>,
                    g: @escaping (B) -> Writer<C>)
     -> ((A) -> Writer<C>) {
@@ -62,5 +68,10 @@ func comp<A, B, C>(f: @escaping (A) -> Writer<B>,
 }
 
 let upperWords = comp(f: toUpper, g: toWords)
-
 upperWords("the quick brown fox")
+
+
+// The identity for Writer<T>
+func id<A>(a: A) -> Writer<A> {
+    return Writer(t: a, log: "")
+}

@@ -80,7 +80,25 @@
     }
     ```
 
-- To generically compose any two functions that return a `Writer<T>`:
+
+### The `Writer` Category
+
+- In the above, we've left types as objects, but now our morphisms are the
+  'embellished' functions `A -> Writer<B>`:
+    - In the category, this is still considered to be a morphism between `A` and
+      `B`.
+
+- We can't compose `f :: a -> Writer b` with `g :: b -> Writer c`, in the
+  'naive' way, since the input and output types don't match.
+
+- Instead we define composition in this category as:
+    1. Get `f(a)`
+    2. Extract the 'value' component of `f(a)` as `b`, and pass it to `g`
+    3. Concatenate the log component of `f(a)` to the log component of `g(b)`
+    4. Return the 'value' component of `g(b)` with the combined log
+
+- To express this programatically, for composing any two functions that return a
+  `Writer<T>`:
     ```swift
     func comp<A, B, C>(f: @escaping (A) -> Writer<B>,
                        g: @escaping (B) -> Writer<C>)
@@ -93,6 +111,14 @@
 
     > let upperWords = comp(f: toUpper, g: toWords)
     > upperWords("the quick brown fox")
+    ```
+
+- We've defined composition in this new category, but not identity, but that's
+  easy:
+    ```swift
+    func id<A>(a: A) -> Writer<A> {
+        return Writer(t: a, log: "")
+    }
     ```
 
 
