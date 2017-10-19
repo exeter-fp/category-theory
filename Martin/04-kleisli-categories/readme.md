@@ -122,6 +122,21 @@
     ```
 
 
+### The `Writer` category in Haskell
+
+- See [Writer.hs](Writer.hs) for an example of this in Haskell
+
+
+### Kleisli Categories
+
+- What we've described above is an example of a [Kleisli Category](https://en.wikipedia.org/wiki/Kleisli_category) - a category based on a monad (here the `Writer` monad).
+
+- The objects in the Kleisli category are the same as the objects in the underlying type system.
+
+- Morphisms between objects `A` and `B` in the Kleisli category are functions that go from type `A` to a type 'derived from' type `B`
+    - i.e. to an 'embellished' type such as `Writer<B>`
+    - The category defines how this composition works (e.g. by appending logs)
+
 
 
 ## Challenges
