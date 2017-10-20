@@ -25,12 +25,13 @@ Product of two objects A and B is the largest object C such that A >= C and B >=
 
 eg. In the category of human geneology (objects are people, morphism is the property of being you or your descendants) the product of my mother and my father is me. The product of my grandmother and my grandfather is me.
 
-
 * What is the coproduct of two objects in a poset?
 
 Coproduct of two objects A and B is the smallest object C such that A <= C and B <= C.
 
 eg. In the category of human geneology the coproduct of my cousin and me is my grandfather and grandmother. Presumably my grandfather is isomorphic to my grandmother.
+
+Adam (the terminal object) is a coproduct of my cousin and me, but he is not the "best" coproduct.
 
 I'm not really sure what happens if there is no product or co-product. eg. There is no product between me and my cousin.
 
