@@ -1,0 +1,37 @@
+* Show that the terminal object is unique up to unique isomorphism
+
+The terminal object T - For every X in C there is 1 morphism X -> T.
+
+
+Say there were 2 terminal objects T1 and T2. 
+
+This means for every X in C there is 1 morphism X -> T1 and 1 morphism X -> T2.
+
+This also means we have T1 -> T2 and T2 -> T1.
+
+Thus due to composition we can go T1 -> T2 -> T1 and T2 -> T1 -> T2.
+
+Because of identity, we also have T1 -> T1 and T2 -> T2. 
+
+Since T1 and T2 are final there can only be one morphism T1 -> T1 and T2 -> T2. So T1 -> T2 -> T1 must be the same morphism as T1 -> T1.  Likewise there can only be one morphism T2 -> T1 -> T2, so T2 o-> T1 -> T2 must be the same morphism as T2 -> T2.
+
+Hence T1 an T2 must be isomorphic.
+
+QED
+
+* What is the product of two objects in a poset?
+
+Product of two objects A and B is the largest object C such that A >= C and B >= C.
+
+eg. In the category of human geneology (objects are people, morphism is the property of being you or your descendants) the product of my mother and my father is me. The product of my grandmother and my grandfather is me.
+
+
+* What is the coproduct of two objects in a poset?
+
+Coproduct of two objects A and B is the smallest object C such that A <= C and B <= C.
+
+eg. In the category of human geneology the coproduct of my cousin and me is my grandfather and grandmother. Presumably my grandfather is isomorphic to my grandmother.
+
+I'm not really sure what happens if there is no product or co-product. eg. There is no product between me and my cousin.
+
+
