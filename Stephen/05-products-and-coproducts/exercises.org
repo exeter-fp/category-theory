@@ -35,3 +35,37 @@ eg. In the category of human geneology the coproduct of my cousin and me is my g
 I'm not really sure what happens if there is no product or co-product. eg. There is no product between me and my cousin.
 
 
+
+* Implement Either in your favorite language.
+
+#+BEGIN_SRC lisp
+  (defclass either () ())
+
+  (defclass left (either) 
+    ((value :initarg :value
+            :reader left-value)))
+
+  (defclass right (either)
+    ((value :initarg :value
+            :reader right-value)))
+
+  (defgeneric factorizer (i j either)
+    (:method (i j (a left))
+      (declare (ignore j))
+      (funcall i (left-value a)))
+    (:method (i j (b right))
+      (declare (ignore i))
+      (funcall j (right-value b))))
+
+
+  (defun contact (either)
+    (factorizer 
+     (lambda (phone) (format nil "Phone : ~A" phone))
+     (lambda (email) (format nil "Email : ~A" email))
+     either))
+
+  (contact (make-instance 'left :value "01222-229292"))
+  (contact (make-instance 'right :value "ponk@wonk.com"))
+
+
+#+END_SRC
