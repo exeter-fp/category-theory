@@ -201,6 +201,8 @@
 4. _Implement the equivalent of Haskell `Either` as a generic type in your
    favorite language (other than Haskell)._
 
+    See [05-products-and-coproducts-challenges.playground](05-products-and-coproducts-challenges.playground/Contents.swift)
+
 5. _Show that `Either` is a “better” coproduct than `int` equipped with two injections:_
     ```
     int i(int n) { return n; }
