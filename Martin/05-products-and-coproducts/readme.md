@@ -2,6 +2,24 @@
 
 ## Notes
 
+### Initial Object
+
+- In a category, `a` is considered 'more initial' than `b` if there is a
+  morphism from `a` to `b`, i.e. `∃ m ∈ Hom(a, b)`.
+
+- The _initial object_ (if it exists) is the object that has *one and only one*
+  morphism going to any object in the category.
+
+- If it exists, the initial object is unique (up to isomorphism).
+
+- Examples:
+    - In a poset, the least element of the set (according to the poset's
+      underlying order relation)
+    - In `Set`, the initial object is `∅`, corrsponding to the Haskell type
+      `Void`, because `absurb :: Void -> a` is the single morphism from `Void`
+      to any type `a`.
+
+
 
 ## Challenges
 
