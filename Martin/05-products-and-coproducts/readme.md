@@ -121,9 +121,39 @@
     ```
 
 - A _product_ of two objects `a` and `b` is the object `c` equipped with two
-  projections `p :: c -> a` and `q :: c ->b` such that for *any* other object
+  projections `p :: c -> a` and `q :: c -> b` such that for *any* other object
   `c’` equipped with two projections `p' :: c' -> a` and `q' :: c' -> b` there
   is a unique morphism `m :: c' -> c` that factorizes `p'` and `q'`.
+
+
+### Coproducts
+
+- By reversing the arrows, we get the dual of the product, the _coproduct_
+
+- We get an object `c`, equipped with two _injections_ `i :: a -> c` and `j ::
+  b -> c` which get the component parts into the co-product:
+
+    ![Coproduct Pattern](images/coproduct-pattern.jpg)
+
+- The ranking of candidate coproducts is also reversed - `c` (with injections
+  `i`, `j`) is considered to be 'a better coproduct' than `c'` (with injections
+  `i'`, `j'`) if ∃ a morphism `m :: c -> c'` that _factorises_ `i'` and `j'`,
+  i.e.:
+    ```
+    i' = i . m
+    j' = j . m
+    ```
+
+- So, a _coproduct_ of two objects `a` and `b` is the object `c` equipped with two
+  injections `i :: a -> c` and `j :: b -> c` such that for *any* other object
+  `c’` equipped with two injections `i' :: a -> c'` and `j' :: b -> c'` there
+  is a unique morphism `m :: c -> c'` that factorizes `i'` and `j'`.
+
+- e.g. for Sets, the coproduct corresponds to the disjoint union, and for
+  `Hask` it corresponds to the `Either` type:
+    ```
+    data Either a b = Left a | Right b
+    ```
 
 
 
@@ -148,8 +178,8 @@
    construction._
 
     The 'product' of two objects `a` and `b` is the 'largest' object that is
-    'less than' both `a` and `b`, where 'largest' and 'less than' is defined by
-    the poset's order relation `≤`:
+    'less than' both `a` and `b`, where 'largest' and 'less than' are defined
+    by the poset's order relation `≤`:
 
     ![Challenge 2](images/challenges-05-2.jpg)  
 
@@ -157,6 +187,16 @@
     ℤ under ≤ : `a x b = min(a, b)`
 
 3. _What is a coproduct of two objects in a poset?_
+
+    The 'coproduct' of two objects `a` and `b` is the 'smallest' object that is
+    not 'less than' both `a` and `b`, where 'smallest' and 'less than' are
+    defined by the poset's order relation `≤`:
+
+    ![Challenge 3](images/challenges-05-3.jpg)  
+
+    (finite) sets under ⊆ : `a x b = a ∪ b`  
+    ℤ under ≤ : `a x b = max(a, b)`
+
 
 4. _Implement the equivalent of Haskell `Either` as a generic type in your
    favorite language (other than Haskell)._
