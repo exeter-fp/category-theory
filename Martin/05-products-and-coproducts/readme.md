@@ -14,11 +14,49 @@
 
 - Examples:
     - In a poset, the least element of the set (according to the poset's
-      underlying order relation)
+      underlying order relation).
     - In `Set`, the initial object is `∅`, corrsponding to the Haskell type
-      `Void`, because `absurb :: Void -> a` is the single morphism from `Void`
+      `Void`, because `absurb :: Void -> a` is the unique morphism from `Void`
       to any type `a`.
 
+
+### Terminal Object
+
+- Conversely to the discussion above, `a` is considered 'more terminal' than `b`
+  if there is a morphism from `b` to `a`, ie. `∃ m ∈ Hom(b, a)`.
+
+- The _terminal object_ (if it exists) is the object that has *one and only one*
+  morphism coming from any object in the category.
+
+- Like the initial object, if the terminal object exists, it is unique up to
+  isomorphism.
+
+- Examples:
+    - In a poset, the greatest element of the set.
+    - In `Set`, the terminal object is the singleton set, corresponding to the
+      Haskell type `()`, because `unit :: a -> ()` is the unique morphism from
+      any type `a` to `()`.
+
+
+### Duality
+
+- For any category `C`, the 'opposite category', <code>C<sup>op</sup></code> is
+  the category formed by reversing the direction of all the morphisms in `C`.
+
+- Composition in <code>C<sup>op</sup></code> is defined by:
+    - If `f::a->b` and `g::b->c` compose to `h::a->c` with `h=g.f`
+    - Then <code>f<sup>op</sup>::b->a</code> and
+      <code>g<sup>op</sup>::c->b</code> will compose to
+      <code>h<sup>op</sup>::c->a</code> with
+      <code>h<sup>op</sup>=f<sup>op</sup>.g<sup>op</sup></code>
+
+- Reversing identity arrows is just a no-op.
+
+- Constructions in <code>C<sup>op</sup></code> are prefixed with 'co' and are
+  said to be the 'dual' of their constructions in `C`.
+
+- The terminal object in `C` is the initial object in
+  <code>C<sup>op</sup></code>.
 
 
 ## Challenges
