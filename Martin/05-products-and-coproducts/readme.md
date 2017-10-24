@@ -59,9 +59,42 @@
   <code>C<sup>op</sup></code>.
 
 
+### Isomorphism
+
+- Objects `a` and `b` are said to be _isomorphic_ if there exist morphisms
+  `f::a->b` and `g::b->a` such that <code>f.g = id<sub>b</sub></code> and
+  <code>g.f = id<sub>a</sub></code>
+
+- Proof that the intiial object is unique up to isomorphism:
+    - Suppose there are two initial objects `i1` and `i2`
+    - Since `i1` is initial, ∃ unique `f::i1->i2`
+    - Since `i2` is initial, ∃ unique `g::i2->i1`
+    - Composing these, `g.f :: i1 -> i1`
+    - But, since `i1` is initial, there is only one morphism from `i1->i1`,
+      namely <code>id<sub>i1</sub></code>
+    - Therefore <code>g.f = id<sub>i1</sub></code>
+    - A similar argument proves that <code>f.g = id<sub>i2</sub></code>
+    - Therefore `i1` and `i2` are isomorphic
+
+- The dual argument holds for terminal objects (see challenge 1 below).
+
+
 ## Challenges
 
 1. _Show that the terminal object is unique up to unique isomorphism._
+
+    Cheat mode: By duality.
+
+    The full proof:
+    - Suppose there are two terminal objects `t1` and `t2`
+    - Since `t1` is terminal, ∃ unique `f::t2->t1`
+    - Since `t2` is terminal, ∃ unique `g::t1->t2`
+    - Composing these, `f.g :: t1 -> t1`
+    - But, since `t1` is terminal, there is only one morphism from `t1->t1`,
+      namely <code>id<sub>t1</sub></code>
+    - Therefore <code>f.g = id<sub>t1</sub></code>
+    - A similar argument proves that <code>g.f = id<sub>t2</sub></code>
+    - Therefore `t1` and `t2` are isomorphic
 
 2. _What is a product of two objects in a poset? Hint: Use the universal
    construction._
