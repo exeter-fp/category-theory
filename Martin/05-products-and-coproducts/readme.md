@@ -47,7 +47,7 @@
     - If `f::a->b` and `g::b->c` compose to `h::a->c` with `h=g.f`
     - Then <code>f<sup>op</sup>::b->a</code> and
       <code>g<sup>op</sup>::c->b</code> will compose to
-      <code>h<sup>op</sup>::c->a</code> with
+      <code>h<sup>op</sup>c->a</code> with
       <code>h<sup>op</sup>=f<sup>op</sup>.g<sup>op</sup></code>
 
 - Reversing identity arrows is just a no-op.
@@ -79,6 +79,54 @@
 - The dual argument holds for terminal objects (see challenge 1 below).
 
 
+
+### Products
+
+- Consider the cartesian product of two sets `A`, `B`:
+    ```
+    A x B = { (a, b) | a ∈ A, b ∈ B }
+    ```
+
+- The two 'projection' functions `fst` and `snd` connect the product back to its
+  constituents:
+    ```haskell
+    fst :: (a, b) -> a
+    fst (x, _) = x
+
+    snd :: (a, b) -> b
+    snd (_, y) = y
+    ```
+
+- In general, in the category `Set`, we have a pattern that connects a product
+  object `c` with its constituents `a` and `b` via two morphisms `p :: c -> a`
+  and `q :: c -> b`:
+
+    ![Product Pattern](images/product-pattern.jpg)
+
+- There are potentially lots of candidates for the product `c`, so how do we
+  find the 'best' one?
+
+    ![Product Candidates](images/product-candidates.jpg)
+
+- Consider two candidate products `c` and `c'` together with their projections
+  `p :: c -> a`, `q :: c -> b` and `p' :: c' -> a`, `q' :: c' -> b`:
+
+    ![Product Ranking](images/product-ranking.jpg)
+
+- `c` is considered to be 'a better product' if ∃ a morphism `m :: c' -> c` that
+  _factorises_ `p'` and `q'`, i.e.:
+    ```
+    p' = p . m
+    q' = q . m
+    ```
+
+- A _product_ of two objects `a` and `b` is the object `c` equipped with two
+  projections `p :: c -> a` and `q :: c ->b` such that for *any* other object
+  `c’` equipped with two projections `p' :: c' -> a` and `q' :: c' -> b` there
+  is a unique morphism `m :: c' -> c` that factorizes `p'` and `q'`.
+
+
+
 ## Challenges
 
 1. _Show that the terminal object is unique up to unique isomorphism._
@@ -98,6 +146,15 @@
 
 2. _What is a product of two objects in a poset? Hint: Use the universal
    construction._
+
+    The 'product' of two objects `a` and `b` is the 'largest' object that is
+    'less than' both `a` and `b`, where 'largest' and 'less than' is defined by
+    the poset's order relation `≤`:
+
+    ![Challenge 2](images/challenges-05-2.jpg)  
+
+    (finite) sets under ⊆ : `a x b = a ∩ b`  
+    ℤ under ≤ : `a x b = min(a, b)`
 
 3. _What is a coproduct of two objects in a poset?_
 
