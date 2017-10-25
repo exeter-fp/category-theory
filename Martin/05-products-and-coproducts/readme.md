@@ -224,7 +224,26 @@
 6. _Continuing the previous problem: How would you argue that `int` with the two
    injections `i` and `j` cannot be “better” than `Either`?_
 
+    Suppose `int` is 'better' than `Either`.  Then there would be a unique
+    morphism from `int` to `Either` that factorises the two morphisms `i' :: Int
+    -> Either Int Bool` and `j' :: Bool -> Either Int Bool`, where:
 
+    ```
+    i' :: Int -> Either Int Bool
+    i' a = Left a
+
+    j' :: Bool -> Either Int Bool
+    j' b = Right b
+    ```
+
+    `i' = m . i`, so applying each side to zero, we get `i'(0) = m(i(0)) =
+    m(0)`, but `i'(0) = Left 0`, so `m(0) = Left 0`
+
+    Also, `j' = m . j`. so applying each side to `True`, we get `j'(True) =
+    m(j(True)) = m(0)`, but `j'(True) = Right True`, so `m(0) = Right True`
+
+    This contradiction proves that we can't define the morphism `m` as required,
+    so `int` cannot be 'better' and `Either`.
 
 7. _Still continuing: What about these injections?_
 
