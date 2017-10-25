@@ -219,7 +219,7 @@
 
    _that factorizes i and j._
 
-    See [Challenges05.hs](Challenges05.hs)
+    See [Challenges05-5.hs](Challenges05-5.hs)
 
 6. _Continuing the previous problem: How would you argue that `int` with the two
    injections `i` and `j` cannot be “better” than `Either`?_
@@ -248,13 +248,16 @@
 7. _Still continuing: What about these injections?_
 
     ```
-    int i(int n) { 
+    int i(int n) {
       if (n < 0) return n;
       return n + 2;
     }
 
     int j(bool b) { return b? 0: 1; }
     ```
+
+    See [Challenges05-7.hs](Challenges05-7.hs) for an implementation of a
+    morphism that works.
 
 8. _Come up with an inferior candidate for a coproduct of `int` and `bool` that
    cannot be better than `Either` because it allows multiple acceptable
