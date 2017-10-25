@@ -224,9 +224,11 @@
 6. _Continuing the previous problem: How would you argue that `int` with the two
    injections `i` and `j` cannot be “better” than `Either`?_
 
-    Suppose `int` is 'better' than `Either`.  Then there would be a unique
-    morphism from `int` to `Either` that factorises the two morphisms `i' :: Int
-    -> Either Int Bool` and `j' :: Bool -> Either Int Bool`, where:
+    Proof by contradiction  
+
+    Suppose `int` is 'better' than `Either`.  Then there would be a morphism
+    `m` from `int` to `Either`  that factorises the two morphisms `i' :: Int ->
+    Either Int Bool` and `j' :: Bool -> Either Int Bool`, where:
 
     ```
     i' :: Int -> Either Int Bool
@@ -236,14 +238,20 @@
     j' b = Right b
     ```
 
-    `i' = m . i`, so applying each side to zero, we get `i'(0) = m(i(0)) =
-    m(0)`, but `i'(0) = Left 0`, so `m(0) = Left 0`
+    ![Challenge 6](images/challenges-05-6.jpg)  
 
-    Also, `j' = m . j`. so applying each side to `True`, we get `j'(True) =
-    m(j(True)) = m(0)`, but `j'(True) = Right True`, so `m(0) = Right True`
+    Since `m` factorises `i'`, `i' = m . i`.  Applying each side to `0`, we get
+    `i'(0) = m(i(0))`.  Since `i(0) = 0` and `i'(0) = Left 0`, this reduces to
+    `Left a = m(0)`.
 
-    This contradiction proves that we can't define the morphism `m` as required,
-    so `int` cannot be 'better' and `Either`.
+    Applying similar logic to `j'`, `j' = m . j`, so applying each side to
+    `True`, we get `j'(True) = m(j(True)) = m(0)`.  But `j'(True) = Right True`,
+    so `Right True = m(0)` m(j(True)) = m(0)`, but `j'(True) = Right True`, so
+    `m(0) = Right True`
+
+    We've derived two different values for `m(0)`.  This contradiction proves
+    that we can't define the morphism `m` as required, so `int` cannot be
+    'better' and `Either`.
 
 7. _Still continuing: What about these injections?_
 
