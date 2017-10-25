@@ -242,12 +242,11 @@
 
     Since `m` factorises `i'`, `i' = m . i`.  Applying each side to `0`, we get
     `i'(0) = m(i(0))`.  Since `i(0) = 0` and `i'(0) = Left 0`, this reduces to
-    `Left a = m(0)`.
+    `Left 0 = m(0)`.
 
     Applying similar logic to `j'`, `j' = m . j`, so applying each side to
     `True`, we get `j'(True) = m(j(True)) = m(0)`.  But `j'(True) = Right True`,
-    so `Right True = m(0)` m(j(True)) = m(0)`, but `j'(True) = Right True`, so
-    `m(0) = Right True`
+    so `Right True = m(0)`.
 
     We've derived two different values for `m(0)`.  This contradiction proves
     that we can't define the morphism `m` as required, so `int` cannot be
