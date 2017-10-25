@@ -219,6 +219,8 @@
 
    _that factorizes i and j._
 
+    See [Challenges05.hs](Challenges05.hs)
+
 6. _Continuing the previous problem: How would you argue that `int` with the two
    injections `i` and `j` cannot be “better” than `Either`?_
 
