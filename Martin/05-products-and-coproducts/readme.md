@@ -144,6 +144,8 @@
     j' = j . m
     ```
 
+    ![Coproduct Ranking](images/coproduct-ranking.jpg)
+
 - So, a _coproduct_ of two objects `a` and `b` is the object `c` equipped with two
   injections `i :: a -> c` and `j :: b -> c` such that for *any* other object
   `c’` equipped with two injections `i' :: a -> c'` and `j' :: b -> c'` there
