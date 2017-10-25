@@ -265,7 +265,9 @@
     ```
 
     See [Challenges05-7.hs](Challenges05-7.hs) for an implementation of a
-    morphism that works.
+    morphism that works.  Effectively, `int` with these revised injections is
+    isomorphic to `Either`, because there's no overlap of '0' and '1' like there
+    was in the original injections.
 
 8. _Come up with an inferior candidate for a coproduct of `int` and `bool` that
    cannot be better than `Either` because it allows multiple acceptable
