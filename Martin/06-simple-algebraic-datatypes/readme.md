@@ -171,3 +171,6 @@
 
 5. _Show that `a + a = 2 * a` holds for types (up to isomorphism).  Remember
    that 2 corresponds to `Bool`, according to our translation table._
+
+    See [Challenges06.hs](Challenges06.hs) for the isomorphism between `Either a
+    a` and `Pair Bool a`
