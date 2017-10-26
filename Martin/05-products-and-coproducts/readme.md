@@ -272,4 +272,22 @@
    cannot be better than `Either` because it allows multiple acceptable
    morphisms from it to `Either`._
 
+    If we use the `int` with the following injections:
 
+    ```
+    int i(int n) {
+      if (n < 0) return n;
+      return n + 3;
+    }
+
+    int j(bool b) { return b? 0: 1; }
+    ```
+
+    Then we can write multiple morphisms `m :: Int -> Either Int Bool` which are
+    the same as those in [Challenges05-7.hs](Challenges05-7.hs), with the
+    following changes:  
+      
+    - `n` for `n >= 0` gets sent to `Left (n - 3)`
+    - `m 2` can be sent to any value of type `Either Int Bool`
+
+    There are infinitely many such morphisms.
