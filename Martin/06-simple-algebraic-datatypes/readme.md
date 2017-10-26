@@ -114,7 +114,10 @@
 
 ## Challenges
 
-1. _Show the isomorphism between `Maybe a` and `Either () a`
+1. _Show the isomorphism between `Maybe a` and `Either () a`_
+
+    See [Challenges06.hs](Challenges06.hs)
+
 
 2. _Here’s a sum type defined in Haskell:_
 
@@ -135,6 +138,9 @@
     _Implement `Shape` in C++ or Java as an interface and create two classes:
     `Circle` and `Rect`.  Implement `area` as a virtual function._
 
+    See [challenge06-2-4](challenge06-2-4)
+
+
 3. _Continuing with the previous example: We can easily add a new function
    `circ` that calculates the circumference of a `Shape`. We can do it without
    touching the definition of `Shape`:_
@@ -148,10 +154,20 @@
     _Add `circ` to your C++ or Java implementation.  What parts of the original
     code did you have to touch?_
 
+    See [challenge06-2-4](challenge06-2-4).  We needed to update the `Shape`
+    interface to add the new function, and each of the two implementations.
+
+
 4. _Continuing further: Add a new shape, `Square`, to `Shape` and make all the
    necessary updates.  What code did you have to touch in Haskell vs. C++ or
    Java? (Even if you’re not a Haskell programmer, the modifications should be
    pretty obvious.)_
+
+    See [challenge06-2-4](challenge06-2-4) for the various updates.  In Java we
+    had to add a new implementation class `Square` (I chose to add a new
+    implementation, rather than extend `Rect`).  In Haskell we had to edit the
+    type definition of `Shape` and the implementations of both `area` and `circ`
+    functions.
 
 5. _Show that `a + a = 2 * a` holds for types (up to isomorphism).  Remember
    that 2 corresponds to `Bool`, according to our translation table._
