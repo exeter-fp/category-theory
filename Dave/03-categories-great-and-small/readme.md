@@ -8,3 +8,12 @@
  - Partial order: i.e. a <= b, b >= a then a = b. No cycles allowed.
  - Linear or total order: If all objects have a relationship
 - C(a,b) or Homc(a,b) is category of C of relations between a and b, called a _hom-set_
+
+
+# Challenges
+
+1. Pictures
+
+2. Orders:  a) Total Order b) Partial order
+
+3a. Any vs. All
