@@ -9,7 +9,7 @@ let writerCompose (f:WriterMorphism<'a,'b>) (g:WriterMorphism<'b,'c>) =
         r2, (l1+l2)
 
 (* Partial *)
-type Maybe<'T> = option<'T>
+type Maybe<'T> = Some of 'T | None
 type MaybeMorphism<'a,'b> = 'a -> Maybe<'b>
 
 let maybeCompose (f:MaybeMorphism<'a,'b>) (g:MaybeMorphism<'b,'c>) =

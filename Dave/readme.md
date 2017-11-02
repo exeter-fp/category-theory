@@ -10,4 +10,4 @@
 ## Other
 
 - [Notes from Framework Reasoning video](reasoning/readme.md)
-- [Notes from CT begineering intro & music video](music/readme.md)
+- [Notes from CT beginner intro & music video](music/readme.md)
