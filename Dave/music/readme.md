@@ -47,3 +47,44 @@ When composing a new arrow, be must list the composition, because there could be
 
 - After composition, clusters can stay same, or increase in size, never reduce
 - Commuting diagram: all paths between 2 points are considered the same.
+- number of maps from A -> B = Power law.  |b| ^ |a|
+
+## Universal Mapping Properties (UWP).   
+
+- Universal cones over diagrams.
+- co-limit same as initial ?
+- Swap definition to a the co
+
+
+## Initial
+
+- For Set, and O, there must be a unique map O -> X.  From power,  |X| ^ |O| = 1 for all x.  Because of this, |O| must be 0 for the maths to work, or empty set {}in
+- Not all categories have them
+
+![](initial.png)
+
+## Terminal
+
+Terminal:
+- Reverse definition, giving us: For Set and T, for all objects X in the category, there is a unique arrow X -> T.  From power, |T| ^ |X| = 1 for all x, so T must be 1 !!!
+- Not all categories have them
+
+￼![](terminal.png)
+
+## Duality
+
+- See F = A->B from different view
+- Sometimes easier to reason in the dual category, so swap between the two
+
+![](splitting.png)
+
+- Create opposite category, with mapping splitter rather than clustering.
+- Permutations, 4 + 4 + 1.  So calculated in Sum and not Product !!
+
+![](splittingCalc.png)
+
+- Lesson 5: optimisation with domain and co-domain, of delivery and routes, etc.
+- In S, choices are independent and order doesn’t matter.  
+- In Sop (dual S), order matters and choices are not independent and decrease to zero as we go on!
+- Terminal of Sop, is initial in S, and visa versa.
+- Because there is opposite category, but that means all features of category have an co equivalent
