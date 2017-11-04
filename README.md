@@ -12,6 +12,7 @@ See repo for the mobi and epub versions of his blog.
 
 - [Terminal and inital objects](https://www.youtube.com/watch?v=yeQcmxM2e5I) video.
 - http://cheng.staff.shef.ac.uk/catnotes/categorynotes-cheng.pdf
+- [Category theory and life](https://skillsmatter.com/skillscasts/10768-keynote-category-theory-in-life)
 
 ## Saunders Mac Lane
 

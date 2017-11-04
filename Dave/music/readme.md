@@ -88,3 +88,9 @@ Terminal:
 - In Sop (dual S), order matters and choices are not independent and decrease to zero as we go on!
 - Terminal of Sop, is initial in S, and visa versa.
 - Because there is opposite category, but that means all features of category have an co equivalent
+- These splittings could be things like tasks and threadpools, or routes and packages, etc.
+- Strategies like early assignment, late assignment, equal distribution
+
+## Questions
+
+- What are distributative categories ?

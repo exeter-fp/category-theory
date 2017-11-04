@@ -1,1 +1,2 @@
-“Simple Algebraic Data Types”
+# Simple Algebraic Data Types
+
