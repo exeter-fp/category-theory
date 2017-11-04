@@ -9,5 +9,6 @@
 
 ## Other
 
-- [Notes from Framework Reasoning video](reasoning/readme.md)
-- [Notes from CT beginner intro & music video](music/readme.md)
+- [Framework Reasoning video](reasoning/readme.md)
+- [CT beginner intro & music video](music/readme.md)
+- [Category Theory and Life](life/readme.md)
