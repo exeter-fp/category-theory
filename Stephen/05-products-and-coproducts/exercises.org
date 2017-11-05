@@ -36,7 +36,6 @@ Adam (the terminal object) is a coproduct of my cousin and me, but he is not the
 I'm not really sure what happens if there is no product or co-product. eg. There is no product between me and my cousin.
 
 
-
 * Implement Either in your favorite language.
 
 #+BEGIN_SRC lisp
@@ -52,11 +51,18 @@ I'm not really sure what happens if there is no product or co-product. eg. There
 
   (defgeneric factorizer (i j either)
     (:method (i j (a left))
-      (declare (ignore j))
-      (funcall i (left-value a)))
+             (declare (ignore j))
+             (funcall i (left-value a)))
     (:method (i j (b right))
-      (declare (ignore i))
-      (funcall j (right-value b))))
+             (declare (ignore i))
+             (funcall j (right-value b))))
+
+  (defun left (value)
+    (make-instance 'left :value value))
+
+  (defun right (value)
+    (make-instance 'right :value value))
+
 
 
   (defun contact (either)
@@ -65,8 +71,102 @@ I'm not really sure what happens if there is no product or co-product. eg. There
      (lambda (email) (format nil "Email : ~A" email))
      either))
 
-  (contact (make-instance 'left :value "01222-229292"))
-  (contact (make-instance 'right :value "ponk@wonk.com"))
+  (contact (left "01222-229292"))
+  (contact (right "ponk@wonk.com"))
+
+#+END_SRC
+
+#+RESULTS:
+: Email : ponk@wonk.com
+
+* Show that Either is a "better" coproduct than int..
+  
+#+BEGIN_SRC lisp
+
+  (defmethod i ((n integer)) 
+    n)
+
+  (defmethod j ((n t))
+    "Note we don't really have a boolean type, so the type t basically means anything. (nil is false)"
+    (if n 0 1))
+
+#+END_SRC
+
+  Either is better than int, because we can define an m : either -> int
+
+#+BEGIN_SRC lisp
+
+  (defgeneric m (either)
+    (:method ((a left))
+      (left-value a))
+    (:method ((b right))
+      (right-value b)))
+
 
 
 #+END_SRC
+#+RESULTS:
+: #<STANDARD-METHOD J (T)>
+  
+
+* How would you argue that int with the two injections i and j cannot be "better" than Either?
+
+We can't write an m : int -> either, because the values 0 and 1 could be either from the bool or the int.
+
+
+* What about these injections?
+
+#+BEGIN_SRC lisp
+  (defmethod i ((n integer))
+    (if (< n 0)
+        n
+        (+ n 2)))
+
+  (defmethod j ((b t))
+    (if b 0 1))
+
+#+END_SRC
+
+#+RESULTS:
+: #<STANDARD-METHOD J (T)>
+
+  We could create a suitable m since there is space int the integers for the full range of possible values :
+
+#+BEGIN_SRC lisp
+  (defun i* (n)
+    (if (< n 0)
+        n
+        (- n 2))) 
+
+  (defun j* (n)
+    (if n 0 1))
+
+  (defmethod m ((n integer))
+    (cond 
+      ((= n 0) (right t))
+      ((= n 1) (right nil))
+      (t (left n))))
+#+END_SRC
+
+  But we can also create an m Either -> Int
+  
+#+BEGIN_SRC lisp
+
+  (defmethod m ((either left))
+    (let ((val (left-value either)))
+      (if (< val 0)
+          val
+        (+ val 2))))
+
+  (defmethod m ((either right))
+    (right-value either))
+
+#+END_SRC
+  
+So in this case, either and int are isomorphic.
+
+(note, I may well be getting the places I need to + 2 and - 2 mixed up....)
+
+#+RESULTS:
+: #<STANDARD-METHOD M (RIGHT)>
+
