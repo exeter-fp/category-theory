@@ -1,6 +1,15 @@
 
 // 1 - Morphishm between Maybe a and Either () a
 
+type Either<'a,'b> = Left of 'a | Right of 'b
+
+let maybeToChoice = function
+    | None -> Left ()
+    | Some x -> Right x
+
+let choiceToMaybe = function
+    | Left () -> None
+    | Right x  -> Some x
 
 // 2 - Shape as interface, 2 implementations
 
@@ -28,3 +37,15 @@ type Rectangle(width,height) =
         member x.Area() = width * width
         member x.Circumference() = width * 4.
 
+// 5 -   a + a = 2 * a
+
+type left<'a> = L of 'a | R of 'a
+type right<'a> = bool * 'a
+
+let lToR = function
+    | L x -> (true,x)
+    | R x -> (false,x)
+
+let rToL = function
+    | true, x -> L x
+    | false, x -> R x
