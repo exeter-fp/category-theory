@@ -84,7 +84,7 @@ factorizer i j (Left a)  = i a
 factorizer i j (Right b) = j b
 ```
 
-## Asymmetry
+## Asymmetry
 
 - Product acts like multiplcation, with terminal object being 1
 - CoProduct acts like addition, with initial object being 0
@@ -92,3 +92,18 @@ factorizer i j (Right b) = j b
 - Domain can be smaller than Codomain, so it gets embeded, or Codomain is smaller, in which case things are collapsed.
 - Bijection is 1-1, i.e. in S, isomorphism is bijection.
 
+## Challenges
+
+1 - Terminal unique to isomorphism
+
+Like the identity, i and j must have unique morphisms coming to them from each other, hence g.f = id. As id is a unique morphism, they are unique up to isomorphism.
+
+2 - Product of two poset objects
+
+From c you must be able to get a and b, so c > b and c > a
+
+3 - CoProduct of two poset objects
+
+From c you must be able to get a or b, so c = a or c = b
+
+4,5,6,7,8 - See F# code
