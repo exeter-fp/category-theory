@@ -100,10 +100,11 @@ Like the identity, i and j must have unique morphisms coming to them from each o
 
 2 - Product of two poset objects
 
-From c you must be able to get a and b, so c > b and c > a
+In a poset, morphism means <=.
+So c, the product of a and b, must be c <= a AND c <= b.  
 
 3 - CoProduct of two poset objects
 
-From c you must be able to get a or b, so c = a or c = b
+The reverse of 2, so c >= a and c >= b
 
 4,5,6,7,8 - See F# code
