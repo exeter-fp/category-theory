@@ -2,7 +2,7 @@
 
 - In CT we can only see dots, so we can only infer things by patterns of relationships (e.g. cypher matching)
 - Follow shape of arrows, link graph theory patterns
-- Rank objects into hierarchy. Poset for partial ordered set.
+- Rank objects into hierarchy. Poset for partial ordered set. In Poset the morphism is the ordering relationship, e.g. `<=` for numbers, `subset of` for sets.
 
 ## Initial
 
@@ -78,11 +78,20 @@ j' = m . j
 
 - In Set, it is the disjoint union. So for two sets, its pairs of the first with index 0, and the pairs of the second with a different index 1. So making unique pairs of all of them. You can think of an element of a disjoint union as being tagged with an identifier that specifies its origin.
 - Factoriser for CoProduct: Given a candidate type c and two candidate injections i and j, the factorizer for Either produces the factoring function:
-```
+
+```haskell
 Factorizer :: (a -> c) -> (b -> c) -> Either a b -> c
 factorizer i j (Left a)  = i a
 factorizer i j (Right b) = j b
 ```
+
+## Product and Coproduct examples
+
+- In integer maths, product is *, coproduct is +
+- In sets, product is carteisan product, coproduct is disjoint union
+- In poset with morphism being `<=`, product is min, coproduct is max
+- In logic, product is AND, coproduct is OR
+
 
 ## Asymmetry
 
@@ -101,10 +110,77 @@ Like the identity, i and j must have unique morphisms coming to them from each o
 2 - Product of two poset objects
 
 In a poset, morphism means <=.
-So c, the product of a and b, must be c <= a AND c <= b.  
+So c, the product of a and b, must be `c <= `a AND `c <= b`.  To be the best, it must not be factorisable, so in this case it will be the highest value that meets this requirement, in this case it will be `min(a,b)`.
 
 3 - CoProduct of two poset objects
 
-The reverse of 2, so c >= a and c >= b
+The reverse of 2, so c >= a and c >= b, and to be the best candidate must not be factorisable, so best is `max(a,b)`.
 
-4,5,6,7,8 - See F# code
+4 - Either in F#
+
+```fsharp
+type Either<'a,'b> = Left of 'a | Right of 'b
+```
+
+5 - Show either is better. We factorise with m.
+
+```fsharp
+let i (n:int) = n
+
+let j = function
+    | true -> 0
+    | false -> 1
+
+let m = function
+    | Left x -> x
+    | Right true  -> 0
+    | Right false -> 1
+
+// Confirm i = Left >> m
+let i' = Left >> m
+let j' = Right >> m
+```
+
+6 - Why is i and j no better than Either ?
+
+```fsharp
+let i = id
+
+let j = function
+    | true  -> 0
+    | false -> 1
+```
+
+Proof by contradiction.  Assme an m exists that factorises Either.
+So:
+- `Left(x) = m . i(x) ` and `Right(y) = m . j(y)`.
+- Choose `x = 0`.  So `i(0) = 0, =>  Left(0) = m(0)`.
+- Choose `y = true`. So `j(true) = 0, => Right(true) = m(0)`
+- This means m(0) can be either Left(0) or Right(true) which is not a function, hence m cannot exist.
+
+7 - Are these better than Either ?
+
+They are isomorphic, can be freely converted back and forth
+
+```fsharp
+let m = function
+    | 0 -> Right true
+    | 1 -> Right false
+    | x when x < 0 -> Left x
+    | x -> Left <| x - 2
+```
+
+8 - Inferior example
+
+We can use the following injections
+
+```fsharp
+let i = function
+    | x when x < 0 -> x
+    | x            -> x + 3
+
+let j = function
+    | true  -> 0
+    | false -> 1
+```
+We can use similar m as in answer 7, but because we have a 'gap' around value '2', we can write an infinite number of them were 2 gets mapped to lots of different values. As there is no unique m, it must be inferior.
