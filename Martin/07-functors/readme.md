@@ -10,17 +10,17 @@
 - Functors preserve connections, so if `f :: a -> b` is a morphism in `C`, then
   `F f :: F a -> F b` is the corresponding morphism in `D`.
 
-![Functor Definition](images/functor-definition.jpg)
+  ![Functor Definition](images/functor-definition.jpg)
 
 - Also, if `h = g . f`, we want its image under `F` to be a composition of the
   images of `f` and `g` - i.e. `F h = F g . F f`
 
-![Functor Composition](images/functor-composition.jpg)
+  ![Functor Composition](images/functor-composition.jpg)
 
 - Finally, identity morphisms in `C` are mapped to identity morphisms in `D` -
   i.e. <code>F id<sub>a</sub> = id<sub>F a</sub></code>:
 
-![Functor Identity](images/functor-identity.jpg)
+  ![Functor Identity](images/functor-identity.jpg)
 
 
 ## Functors in Programming
@@ -162,8 +162,37 @@
 3. _Implement the reader functor in your second favorite language (the first
    being Haskell, of course)._
 
+   See [07-functors-challenges.playground](07-functors-challenges.playground/Contents.swift)
 
 4. _Prove the functor laws for the list functor. Assume that the laws are true
    for the tail part of the list you’re applying it to (in other words, use
    induction)._
+
+    - `fmap id = id`:
+        ```
+        fmap id Nil = Nil
+                    = id Nil
+
+        fmap id (Cons x t) = Cons (id x) (fmap id t)
+                           = Cons x (fmap id t)
+                           = Cons x (id t)
+                           = Cons x t
+        ```
+
+    - `fmap (f . g) = fmap f . fmap g`:
+        ```
+        fmap (f . g) Nil = Nil
+                         = id Nil
+                         = fmap f Nil
+                         = fmap f (id Nil)
+                         = fmap f (fmap g Nil)
+                         = (fmap f) . (fmap g) Nil
+
+        fmap (f . g) (Cons x t) = Cons ((f . g) x) (fmap (f . g) t)
+                                = Cons ((f . g) x) ((fmap f) . (fmap g) t)
+                                = Cons (f (g x))   (fmap f (fmap g t)))
+                                = fmap f (Cons (g x) (fmap g t))
+                                = fmap f (fmap g (Cons x t))
+                                = ((fmap f) . (fmap g)) (Cons x t)
+        ```
 
