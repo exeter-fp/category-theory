@@ -124,7 +124,7 @@
 
     This won't work.  If it were the case, then, by the first functor law `fmap
     id = id`.  Applying both sides of this equation to `Just 1` gives:
-    ```
+    ```haskell
     fmap id (Just 1) = id (Just 1)
     ```
     The RHS is `Just 1`, by definition of `id`.  According to our definition of
@@ -139,21 +139,21 @@
     - _Functor identity law_ (`fmap id = id`):
         - Consider any function `g :: r -> a`
         - Then:
-            ```
-            fmap id g = id . g           (definition of fmap)
-                      = g                (definition of . and id)
+            ```haskell
+            fmap id g = id . g           -- definition of fmap
+                      = g                -- definition of . and id
             ```
         - Since `fmap id g = g` for all `g`, then `fmap id = id`
 
     - _Functor associativity law_ `fmap (f. g) = fmap f . fmap g`:
         - Consider any function `h :: r -> a`
         - Then:
-            ```
-            fmap (f . g) h = (f . g) h              (definition of fmap)
-                           = f . (g . h)            (associativity of .)
-                           = f . (fmap g h)         (definition of fmap)
-                           = fmap f (fmap g h)      (definition of fmap)
-                           = (fmap f) . (fmap g) h  (definition of .)
+            ```haskel
+            fmap (f . g) h = (f . g) h              -- definition of fmap
+                           = f . (g . h)            -- associativity of .
+                           = f . (fmap g h)         -- definition of fmap
+                           = fmap f (fmap g h)      -- definition of fmap
+                           = (fmap f) . (fmap g) h  -- definition of .
             ```
         - Since `fmap (f . g) h = (fmap f) . (fmap g) h` for all `h`, then `fmap
           (f . g) = fmap f . fmap g`
@@ -168,8 +168,8 @@
    for the tail part of the list you’re applying it to (in other words, use
    induction)._
 
-    - `fmap id = id`:
-        ```
+    - Proof of `fmap id = id` by equational reasoning:
+        ```haskell
         fmap id Nil = Nil
                     = id Nil
 
@@ -179,8 +179,8 @@
                            = Cons x t
         ```
 
-    - `fmap (f . g) = fmap f . fmap g`:
-        ```
+    - Proof of `fmap (f . g) = fmap f . fmap g` by equational reasoning:
+        ```haskell
         fmap (f . g) Nil = Nil
                          = id Nil
                          = fmap f Nil
