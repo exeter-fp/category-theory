@@ -122,7 +122,42 @@
 
    _which ignores both of its arguments? (Hint: Check the functor laws.)_
 
+    This won't work.  If it were the case, then, by the first functor law `fmap
+    id = id`.  Applying both sides of this equation to `Just 1` gives:
+    ```
+    fmap id (Just 1) = id (Just 1)
+    ```
+    The RHS is `Just 1`, by definition of `id`.  According to our definition of
+    `fmap` above, `fmap id (Just 1) = Nothing`.
+
+
 2. _Prove functor laws for the reader functor. Hint: it’s really simple._
+
+    - This follows trivially from the definition of `fmap` for `Reader` being
+      just plain composition
+
+    - _Functor identity law_ (`fmap id = id`):
+        - Consider any function `g :: r -> a`
+        - Then:
+            ```
+            fmap id g = id . g           (definition of fmap)
+                      = g                (definition of . and id)
+            ```
+        - Since `fmap id g = g` for all `g`, then `fmap id = id`
+
+    - _Functor associativity law_ `fmap (f. g) = fmap f . fmap g`:
+        - Consider any function `h :: r -> a`
+        - Then:
+            ```
+            fmap (f . g) h = (f . g) h              (definition of fmap)
+                           = f . (g . h)            (associativity of .)
+                           = f . (fmap g h)         (definition of fmap)
+                           = fmap f (fmap g h)      (definition of fmap)
+                           = (fmap f) . (fmap g) h  (definition of .)
+            ```
+        - Since `fmap (f . g) h = (fmap f) . (fmap g) h` for all `h`, then `fmap
+          (f . g) = fmap f . fmap g`
+
 
 3. _Implement the reader functor in your second favorite language (the first
    being Haskell, of course)._
