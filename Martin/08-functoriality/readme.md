@@ -2,6 +2,68 @@
 
 ## Notes
 
+### Bifunctors
+
+- A _bifunctor_ is a functor of two arguments, which maps every pair of objects,
+  one each from categories `C` and `D` to an object in category `E`:
+
+  ![Bifunctor Definition](images/bifunctor-definition.jpg)
+
+- This is just like saying it's a mapping from the cartesian product `C x D` to
+  `E`.
+
+- It must also map a pair of morphisms, one from `C` and one from `D` to a
+  morphism in `E`.
+
+- A pair of morphisms is just a single morphism in `C x D`, with identity `(id,
+  id)` and composition defined as: 
+
+    ```
+    (f, g) . (f', g') = (f . f', g . g')
+    ```
+
+- Bifunctors can also be thought of as functors in both arguments, so we can
+  check functor laws separately for each argument.
+
+- Bifunctors in Haskell are defined by the `Bifunctor` typeclass:
+    ```haskell
+    class Bifunctor f where
+        bimap :: (a -> c) -> (b -> d) -> f a b -> f c d
+        bimap g h = first g . second h
+
+        first :: (a -> c) -> f a b -> f c b
+        first g = bimap g id
+
+        second :: (b -> d) -> f a b -> f a d
+        second = bimap id
+    ```
+
+  ![Bifunctor - bimap](images/bifunctor-bimap.jpg)
+
+  ![Bifunctor - first](images/bifunctor-first.jpg)
+
+  ![Bifunctor - second](images/bifunctor-second.jpg)
+
+
+### Product and Coproduct Bifunctors
+
+- If the product exists for a pair of objects, the mapping from those objects to
+  the product is bifunctorial.  For example, in Haskell consider the `(,)`
+  operator, which is the pair constructor:
+    ```haskell
+    instance Bifunctor (,) where
+        bimap f g (x, y) = (f x, g y)
+    ```
+
+- By duality the same works for a co-product, e.g.:
+    ```haskell
+    instance Bifunctor Either where
+        bimap f _ (Left  x) = Left  (f x)
+        bimap _ g (Right y) = Right (g y)
+    ```
+
+- 
+
 
 
 
@@ -13,7 +75,40 @@
     data Pair a b = Pair a b
     ```
 
-   _is a bifunctor. For additional credit implement all three methods of
+   _is a bifunctor._
+
+    From the text, it suffices to prove that `Pair` is functorial in each of its
+    arguments (keeping the other one constant).
+
+    Consider the second argument first - we can write the following instance of
+    `Functor` for `Pair a`:
+
+    ```haskell
+    instance Functor (Pair a) where
+        fmap f (Pair x y) = Pair x (f y)
+    ```
+
+    Then, we'll show that the functor laws are valid:
+
+    ```haskell
+    fmap id (Pair x y) = Pair x (id y)
+                       = Pair x y
+    => fmap id = id
+
+    fmap (f . g) (Pair x y) = Pair x ((f . g) y)
+                            = Pair x (f (g (y))
+                            = fmap f (Pair x (g y))
+                            = fmap f (fmap g (Pair x y))
+                            = (fmap f) . (fmap g) (Pair x y)
+    => fmap (f . g) = (fmap f) . (fmap g)
+    ```
+
+    A similar argument applies to keeping the second argument constant, but I'm
+    not sure I can write it all out in Haskell, because I can't write `instance
+    Functor (Pair _ b)`.
+
+
+   _For additional credit implement all three methods of
    Bifunctor and use equational reasoning to show that these definitions are
    compatible with the default implementations whenever they can be applied._
 
