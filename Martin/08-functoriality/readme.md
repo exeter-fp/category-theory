@@ -107,10 +107,56 @@
     not sure I can write it all out in Haskell, because I can't write `instance
     Functor (Pair _ b)`.
 
+   _For additional credit implement all three methods of Bifunctor..._
 
-   _For additional credit implement all three methods of
-   Bifunctor and use equational reasoning to show that these definitions are
+    ```haskell
+    instance Bifunctor Pair where
+        bimap g h (Pair a b) = Pair (g a) (h b)
+        first g (Pair a b) = Pair (g a) b
+        second h (Pair a b) = Pair a (h b)
+    ```
+
+   _... and use equational reasoning to show that these definitions are
    compatible with the default implementations whenever they can be applied._
+
+    I think think means showing that if we take our definition of `bimap` and
+    plug it into the default for `first` and `second` we get back the same as
+    our definitions of those methods:
+
+    ```haskell
+    -- Given our definition of `bimap`:
+
+    bimap g h (Pair a b) = Pair (g a) (h b)
+
+    -- Default implementation of `first` and `second`
+
+    first g (Pair a b) = bimap g id (Pair a b)
+                       = Pair (g a) (id b)
+                       = Pair (g a) b
+                       -- ...which is our definition of `first`
+
+    second h (Pair a b) = bimap id h (Pair a b)
+                        = Pair (id a) (h b)
+                        = Pair a (h b)
+                        -- ...which is our definition of `second`
+    ```
+
+    ...and vice versa:
+
+    ```haskell
+    -- Given our definitions of `first` and `second`:
+
+    first  g (Pair a b) = Pair (g a) b
+    second h (Pair a b) = Pair a (h b)
+
+    -- Default implementation of `bimap`:
+
+    bimap g h (Pair a b) = (first g . second h) (Pair a b)
+                         = first g (second h (Pair a b))
+                         = first g (Pair a (h b))
+                         = Pair (g a) (h b)
+                         -- which is our definition of `bimap`
+    ```
 
 
 2. _Show the isomorphism between the standard definition of `Maybe` and this

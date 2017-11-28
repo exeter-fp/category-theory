@@ -13,6 +13,7 @@ data Pair a b =
          b
     deriving (Eq, Show)
 
+-- Challenge 1 - `bifunctor` instance for `Pair`
 instance Bifunctor Pair where
     bimap g h (Pair a b) = Pair (g a) (h b)
     first g (Pair a b) = Pair (g a) b
