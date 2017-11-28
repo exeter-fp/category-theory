@@ -62,7 +62,37 @@
         bimap _ g (Right y) = Right (g y)
     ```
 
-- 
+
+
+### Functorial Algebraic Data Types
+
+- Sums and products are functorial, and functors compose, so if we can show that
+  the basic building blocks of ADTs are functorial, that means all parameterized
+  ADTs are also functorial.
+
+- First building block is one with no dependency on the type parameter:
+    - `Nothing` for `Maybe`
+    - `Nil` for `List`
+    - These are equivalent to the `Const` functor
+
+- Next building block are elements that just encapsulate the type parameter:
+    - `Just` for `Maybe`
+    - These are equivalent to the `Identity` functor.
+
+- The `Identity` functor is simple in Haskell:
+    ```haskell
+    data Identity a = Identity a
+
+    instance Functor Identity where
+        fmap f (Identity x) = Identity (f x)
+    ```
+
+- Everything else is constructed from combinations of `Const` and `Identity`
+  using products and sums, e.g.:
+    ```haskell
+    type Maybe a = Either (Const () a) (Identity a)
+    ```
+
 
 
 
@@ -166,9 +196,30 @@
     type Maybe' a = Either (Const () a) (Identity a)
     ```
 
-   _Hint: Define two mappings between the two implementations. For additional
-   credit, show that they are the inverse of each other using equational
-   reasoning._
+   _Hint: Define two mappings between the two implementations._
+
+    See [Challenges08.hs](Challenges08.hs)
+
+   _For additional credit, show that they are the inverse of each other using
+   equational reasoning._
+
+    Step 1 - show `maybeToMaybe' . maybe'ToMaybe = id`:
+
+    ```haskell
+      (maybeToMaybe' . maybe'ToMaybe) (Left (Const ()))
+    =  maybeToMaybe'  (maybe'ToMaybe  (Left (Const ())))
+    =  maybeToMaybe'  (Nothing)
+    =  Left (Const ())
+
+      (maybeToMaybe' . maybe'ToMaybe) (Right (Identity x))
+    =  maybeToMaybe'  (maybe'ToMaybe  (Right (Identity x)))
+    =  maybeToMaybe'  (Just x)
+    =  Right (Identity x)
+    ```
+
+    It's pretty much identical the other way around, to show `maybe'ToMaybe .
+    maybeToMaybe' = id`.
+
 
 
 3. _Let’s try another data structure. I call it a `PreList` because it’s a
@@ -183,6 +234,16 @@
    points)._
 
    _Show that `PreList` is an instance of `Bifunctor`._
+
+    We can do this similarly to challenge 2 above by defining `PreList` in terms
+    of the more basic functorial building blocks:
+    ```haskell
+    type PreList' a b = Either (Const () a) (Identity (a, b))
+    ```
+
+    See [Challenges08.hs](Challenges08.hs) for functions mapping `PreList` to
+    and from `PreList` and for a sample `Bifunctor` instance for `PreList`.
+
 
 
 4. _Show that the following data types define bifunctors in `a` and `b`:_
