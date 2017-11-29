@@ -1,0 +1,60 @@
+1. Can we turn the Maybe type constructor into a functor by defining :
+
+fmap _ _ = Nothing
+
+which ignores both of its arguments?
+
+Certainly not!
+
+** Identity
+
+fmap id = id
+fmap id Nothing = Nothing = id Nothing
+
+*check*
+
+fmap id (Just x) = Nothing != id (Just x)
+
+*fail*
+
+*We fail the identity rule.*
+
+** Composition
+
+fmap (g . f) = fmap g . fmap f
+
+fmap (g . f) Nothing =  Nothing = fmap g Nothing = fmap g (fmap f Nothing)
+
+
+fmap (g . f) (Just x) = Nothing != Just (g (f x))
+
+*fail*
+
+*We fail composition*
+
+
+2. Prove functor laws for the Reader functor
+
+#+BEGIN_SRC haskell
+instance Functor ((->) r) where
+  fmap f g = f . g
+#+END_SRC
+
+*** Identity
+
+    fmap id g = id . g = g = g . id = id g
+
+*** Composition
+
+    fmap (g . f) h = (g . f) . h = g . (f . h) = g . (fmap f h) = fmap g (fmap f h)
+    
+
+3. Implement the Reader function in your second favorite language?
+
+#+BEGIN_SRC lisp
+
+  (defun fmap (f g)
+    (lambda (&rest args)
+      (funcall g (apply f args))))
+
+#+END_SRC
