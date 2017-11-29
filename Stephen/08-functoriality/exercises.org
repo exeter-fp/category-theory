@@ -1,0 +1,48 @@
+
+1. Show that the data type: `data pair a b = Pair a b` is a bifunctor.
+   
+#+BEGIN_SRC haskell
+import Control.Bifunctor
+
+data Pair a b = Pair a b
+
+instance Bifunctor (Pair a b) where
+  bimap :: (a -> c) -> (b -> d) -> Pair a b -> Pair c d
+  bimap g h (Pair a b) = Pair (g a) (h b)
+  
+  first :: (a -> c) -> Pair a b -> Pair c b
+  first g (Pair a b) = Pair (g a) b
+  
+  second :: (b -> d) -> Pair a b -> Pair a d
+  second h (Pair a b) = Pair a (h b) 
+
+#+END_SRC
+
+Show this implementation is compatible with the default implementations:
+
+bimap g h (Pair a b)
+ = first g . second h $ (Pair a b)
+ {- Expanding it out cos its easier to read -}
+ = second h (first g (Pair a b))
+ {- Substituting definition of first -}
+ = second h (Pair (g a) b)
+ {- Substituting definition of second -}
+ = Pair (g a) (h b)
+
+
+
+ 2. Show the isomorphism between the standard definition of Maybe and this desugaring :
+type Maybe' a = Either (Const () a) (Identity a)
+
+#+BEGIN_SRC haskell
+type Maybe' a = Either (Const () a) (Identity a)
+
+maybeToMaybeQuote :: Maybe a -> Maybe' a
+maybeToMaybeQuote Nothing = Left (Const ())
+maybeToMaybeQuote (Just a) = Right (Identity a)
+
+maybeQuoteToMaybe :: Maybe' a -> Maybe a
+maybeQuoteToMaybe Left _ = Nothing
+maybeQuoteToMaybe Right (Identity a) = Just a
+
+#+END_SRC
