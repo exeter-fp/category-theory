@@ -1,5 +1,5 @@
 
-1. Show that the data type: `data pair a b = Pair a b` is a bifunctor.
+* 1. Show that the data type: `data pair a b = Pair a b` is a bifunctor.
    
 #+BEGIN_SRC haskell
 import Control.Bifunctor
@@ -20,6 +20,8 @@ instance Bifunctor (Pair a b) where
 
 Show this implementation is compatible with the default implementations:
 
+#+BEGIN_SRC 
+
 bimap g h (Pair a b)
  = first g . second h $ (Pair a b)
  {- Expanding it out cos its easier to read -}
@@ -29,9 +31,10 @@ bimap g h (Pair a b)
  {- Substituting definition of second -}
  = Pair (g a) (h b)
 
+#+END_SRC
 
 
- 2. Show the isomorphism between the standard definition of Maybe and this desugaring :
+* 2. Show the isomorphism between the standard definition of Maybe and this desugaring :
 type Maybe' a = Either (Const () a) (Identity a)
 
 #+BEGIN_SRC haskell
@@ -46,3 +49,107 @@ maybeQuoteToMaybe Left _ = Nothing
 maybeQuoteToMaybe Right (Identity a) = Just a
 
 #+END_SRC
+
+* 3. Show that PreList is a bifunctor.
+
+#+BEGIN_SRC haskell
+data PreList a b = Nil | Cons a b
+#+END_SRC
+
+Is it a functor in a?
+
+#+BEGIN_SRC haskell
+instance Functor PreList a b where
+  fmap f (PreList a b) = PreList (f a) b
+  fmap f Nil = Nil
+#+END_SRC
+
+*** Identity
+
+    fmap id (PreList a b) = PreList (id a) b = PreList a b
+    
+    or for Nil
+    
+    fmap id Nil = Nil = fmap id Nil
+
+    It satisfies Identity.
+
+*** Composition
+
+    fmap (g . f) (PreList a b) 
+    = PreList ((g . f) a) b 
+    = PreList f(g(a)) b 
+    = fmap f (PreList g(a) b)
+    = fmap f (fmap g (PreList a b))
+    = (fmap g) . (fmap f) PreList a b
+
+    or for Nil
+    fmap (g . f) Nil 
+    = Nil
+    = (fmap f Nil) -- Since fmap f Nil will return Nil
+    = fmap g (fmap g Nil)
+    
+    It satisfies Composition.
+
+    We can do the same for the other parameter, b. Therefore it is a Bifunctor.
+
+   
+
+* 4. 
+
+  Wut?
+
+* 5. Define a bifunctor in your second favorite language
+
+  #+BEGIN_SRC lisp
+(defclass bifunctor () 
+  ())
+
+(defmethod first* (g (b bifunctor))
+  (bimap g #'identity b))
+
+(defmethod second* (h (b bifunctor))
+  (bimap #'identity h b))
+
+(defmethod bimap (g h (b bifunctor))
+  (first* g (second* h b)))
+
+  #+END_SRC
+  
+Implement bimap for a generic pair in that language.
+
+  #+BEGIN_SRC lisp
+(defclass pair (bifunctor)
+  ((a :initarg :a)
+   (b :initarg :b)))
+
+(defun make-pair (a b)
+  (make-instance 'pair :a a :b b))
+
+(defmethod first* (g (p pair))
+  (with-slots (a b) p
+    (make-pair (funcall g a) b)))
+
+(defmethod second* (h (p pair))
+  (with-slots (a b) p
+    (make-pair a (funcall h b))))
+
+(defmethod print-object ((p pair) stream)
+  (with-slots (a b) p
+    (format stream "(~A ~A)" a b)))
+
+(setf pr (make-pair 2 3))
+;;(2 3)
+
+(first* #'1+ pr)
+;;(3 3)
+
+(second* #'1+ pr)
+;;(2 4)
+
+(bimap #'1+ (lambda (x) (+ 100 x)) pr)
+;;(3 103)
+
+  #+END_SRC
+
+  
