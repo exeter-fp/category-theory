@@ -6,6 +6,8 @@
 1. [Kleisli-categories](04-kleisli-categories/readme.md)
 1. [Products-and-coproducts](05-products-and-coproducts/readme.md)
 1. [Simple-algebraic-data-types](06-simple-algebraic-data-types/readme.md)
+1. [Functors](07-functors/readme.md)
+1. [Functoriality](08-functoriality/readme.md)
 
 ## Other
 

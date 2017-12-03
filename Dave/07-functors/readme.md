@@ -156,10 +156,14 @@ Functors are morphisms in the category of Cat, where objects are categories. It'
 1. Can we turn the Maybe type constructor into a functor by defining:
 
 `fmap _ _ = Nothing`
+
+No, functors preserve structure, what about Just ?  What about Id ?
       
 which ignores both of its arguments? (Hint: Check the functor laws.)
 
 2. Prove functor laws for the reader functor. Hint: it’s really simple.
+
+
 
 3. Implement the reader functor in your second favorite language (the first being Haskell, of course).
 
