@@ -52,3 +52,22 @@ preList'ToPreList (Right (Identity (x, y))) = Cons x y
 instance Bifunctor PreList where
     bimap _ _ Nil        = Nil
     bimap g h (Cons a b) = Cons (g a) (h b)
+
+-- Challenge 4 - K2 / Fst / Snd
+data K2 c a b =
+    K2 c
+
+instance Bifunctor (K2 c) where
+    bimap f g (K2 c) = K2 c
+
+data Fst a b =
+    Fst a
+
+instance Bifunctor Fst where
+    bimap f _ (Fst x) = Fst (f x)
+
+data Snd a b =
+    Snd b
+
+instance Bifunctor Snd where
+    bimap _ g (Snd y) = Snd (g y)
