@@ -1,0 +1,64 @@
+* Define a natural transformation from the Maybe functor to the list functor:
+
+#+BEGIN_SRC haskell
+  toList :: Maybe a -> [a]
+  toList (Just x) = [x]
+  toList Nothing = []
+#+END_SRC
+
+** Prove the naturality condition for it 
+
+#+BEGIN_SRC 
+   
+fmap f . toList = toList . fmapf
+
+Two cases to consider :
+
+fmap f $ toList Nothing = fmap f [] = []
+toList $ fmap f Nothing = toList Nothing = []
+
+And
+
+fmap f $ toList (Just x) = fmap f [x] = [f x]
+toList $ fmap f (Just x) = toList $ Just (f x) = [f x]
+
+#+END_SRC
+
+   QED
+
+* Define at least two different natural transformations between `Reader ()` and the list functor
+  
+
+#+BEGIN_SRC haskell
+
+newtype Reader e a = Reader (e -> a)
+
+instance Functor (Reader e) where
+  fmap f (Reader g) = Reader (\x -> f (g x))
+
+transform1 :: Reader () a -> [a]
+transform1 (Reader _) = []
+
+transform2 :: Reader () a -> [a]
+transform2 (Reader g) = [g ()]
+  
+#+END_SRC
+
+ 
+  
+** How many different lists of () are there?
+
+Infinite. [], [()], [(), ()], [(), (), ()] etc...
+
+
+* Continue the previous exercise with Reader Bool and Maybe
+
+#+BEGIN_SRC haskell
+
+transformTrue :: Reader Bool a -> Maybe a
+transformTrue (Reader g) = Just $ g True
+
+transformFalse :: Reader Bool a -> Maybe a
+transformFalse (Reader g) = Just $ g False
+
+#+END_SRC
