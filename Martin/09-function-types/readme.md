@@ -82,12 +82,86 @@
 
 ### Currying
 
+- Now we start thinking of a morphism `g :: z x a -> b` as a morphism of two
+  variables `z` and `a`, for a candidate function type `z`.
+
+- The universal property tells us that for each such `g` there is a unique
+  morphism `h :: z -> (a=>b)`
+
+- In `Set` this can be interpreted as `h` being a function that takes one
+  variable of type `z` and returns a function from `a` to `b` - i.e. `h` is a
+  _higher-order function_.
+
+- Therefore the universal construction establishes a 1-1 correspondence between
+  functions of two variables and functions or one variable returning functions.
+
+- This is called _currying_, and `h` is called the _curried_ version of `g`.
+
+
+
 ### Exponentials
+
+- The function object between two objects `a` and `b` is often called the
+  _exponential_, denoted <code>b<sup>a</sup></code>.
+
+- For finite-sized types, the cardinality of the function type from `a` to `b`
+  is <code>|b|<sup>|a|</sup></code>, where `|a|` represents the cardinality of
+  `a`.
+
+
 
 ### Cartesian Closed Categories
 
+- A _Cartesian closed category_ is a category which contains:
+    - A terminal object
+    - A product for any pair of objects
+    - An exponential for any pair of objects
+
+- We can consider exponentiation as an iterated product, so we can think of a
+  cartesian closed category as one that supports products of an arbitrary arity.
+
+- In particular, the terminal object can be considered as the product of zero
+  objects.
+
+- Recall that the terminal object and product have duals - the initial object
+  and the coproduct.
+
+- A cartesian closed category that also supports an initial object and
+  coproduct, with product distributive over coproduct:
+  ```
+  a x (b + c) = a x b + a x c
+  (b + c) x a = b x a + c x a
+  ```
+  is called a _bicartesian closed category`_.
+
+
+
 ### Exponentials & Algebraic Data Types
 
-### Curry-Howard Isomorphism
+- Function types as exponentials translate well to algebraic data types:
+    - `0` corresponds to the initial object
+    - `1` corresponds to the terminal object
 
+- <code>a<sup>0</sup> = 1</code>:
+    - This represents the set of morphisms from the initial object to any object
+      `a`.
+    - By definition of initial object, there is a unique such morphism, so it's
+      a singleton set.
+    - A singleton set is the terminal object in `Set`, so the identity works in
+      `Set`.
+    - In Haskell, `0 -> Void`, `1 -> ()`, so we have that the set of functions
+      from `Void -> a` is a singleton (`absurd :: Void -> a`).
 
+- <code>1<sup>a</sup></code>:
+    - In `Set` - there is a unique morphism from any object `a` to the terminal
+      object `1`.  This is just the definition of the terminal object.
+    - In Haskell, there is only one function `a -> ()`, namely `unit`.
+
+- <code>a<sup>1</sup> = a</code>:
+    - Morphisms from the terminal object can be used to pick elements of `a`.
+    - In Haskell the isomorphism is between elements of `a` and functions `() ->
+      a`.
+
+- <code>a<sup>b+c</sup> = a<sup>b</sup> x a<sup>c</sup></code>:
+    - In Haskell, the funciton from a sum type is equivalent to a pair of
+      functions from individual types.
