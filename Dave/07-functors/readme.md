@@ -109,7 +109,7 @@ fmap = (.)
 
 This is just function compostition, showing functions are functors
 
-### Const functor
+### Const functor
 
 Functors may or may not allow views of what is in them (outside the defintiion of functors). Example is the Const type constructor, it ignores the last type completely.
 

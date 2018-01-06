@@ -8,6 +8,8 @@
 1. [Simple-algebraic-data-types](06-simple-algebraic-data-types/readme.md)
 1. [Functors](07-functors/readme.md)
 1. [Functoriality](08-functoriality/readme.md)
+1. [Function types](09-function-types/readme.md)
+1. [Natural transformations](10-natural-transformations/readme.md)
 
 ## Other
 
