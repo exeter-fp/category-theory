@@ -11,3 +11,4 @@
 - Put together via product and coproduct
 - Smallest blocks via factorisation, i.e. ranking for simplest
 - Equality / Sameness as isomorphism
+- Relationships matter over eveything (its all there is), and their patterns.
