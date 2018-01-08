@@ -120,3 +120,79 @@
     ```
 
 
+## Challenges
+
+1. _Define a natural transformation from the `Maybe` functor to the list functor._
+
+    ```haskell
+    maybeToList :: Maybe a -> [a]
+    maybeToList Nothing  = []
+    maybeToList (Just x) = [x]
+    ```
+
+   _Prove the naturality condition for it._
+
+    ```
+    -- We need to prove:
+    --    fmap f . maybeToList = maybeToList . fmap f
+
+    -- Case 1: Nothing:
+    fmap f . maybeToList $ Nothing = fmap f (maybeToList Nothing)
+                                   = fmap f []
+                                   = []
+
+    maybeToList . fmap f $ Nothing = maybeToList (fmap f Nothing)
+                                   = maybeToList Nothing
+                                   = []
+
+    -- Case 2: Just x:
+    fmap f . maybeToList $ (Just x) = fmap f (maybeToList (Just x))
+                                    = fmap f [x]
+                                    = [f x]
+
+    maybeToList . fmap f $ (Just x) = maybeToList (fmap f (Just x))
+                                    = maybeToList (Just (f x))
+                                    = [f x]
+    ```
+
+2. _Define at least two different natural transformations between `Reader ()`
+   and the list functor._
+
+    The two options either always produce an empty list, or produce a singleton
+    list consisting of the single application of `g` to `()`.  There are an
+    infinite number of possible natural transformations, according to how many
+    copies of `g ()` are put in the destination list.
+
+    ```haskell
+    empty :: Reader () a -> [a]
+    empty (Reader _) = []
+
+    singleton :: Reader () a -> [a]
+    singleton (Reader g) = [g ()]
+    ```
+
+  _How many different lists of `()` are there?_
+
+    Infinitely many, depending on how many copies of `()` are in the list - i.e.
+    `[]`, `[()]`, `[(), ()]`, `[(), (), ()]` and so on.  These are in 1-1
+    correspondence with the natural transformations defined above.
+
+3. _Continue the previous exercise with `Reader Bool` and `Maybe`._
+
+    We can either always return `Nothing`, or return a `Just` that contains the
+    results of applying the `Reader` to `False` or `True`:
+
+    ```haskell
+    alwaysNothing :: Reader Bool a -> Maybe a
+    alwaysNothing (Reader _) = Nothing
+
+    applyFalse :: Reader Bool a -> Maybe a
+    applyFalse (Reader g) = Just $ g False
+
+    applyTrue :: Reader Bool a -> Maybe a
+    applyTrue (Reader g) = Just $ g True
+    ```
+
+    These three natural transformations are in 1-1 correspondence with the three
+    possible members of `Maybe Bool` - namely, `Nothing`, `Just False` and `Just
+    True`.
