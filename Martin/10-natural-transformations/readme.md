@@ -132,10 +132,9 @@
 
    _Prove the naturality condition for it._
 
-    ```
-    -- We need to prove:
-    --    fmap f . maybeToList = maybeToList . fmap f
+    We need to prove that `fmap f . maybeToList = maybeToList . fmap f`.
 
+    ```haskell
     -- Case 1: Nothing:
     fmap f . maybeToList $ Nothing = fmap f (maybeToList Nothing)
                                    = fmap f []
@@ -161,7 +160,7 @@
     The two options either always produce an empty list, or produce a singleton
     list consisting of the single application of `g` to `()`.  There are an
     infinite number of possible natural transformations, according to how many
-    copies of `g ()` are put in the destination list.
+    copies of `g ()` are put in the destination list:
 
     ```haskell
     empty :: Reader () a -> [a]
@@ -169,9 +168,12 @@
 
     singleton :: Reader () a -> [a]
     singleton (Reader g) = [g ()]
+
+    double :: Reader () a -> [a]
+    double (Reader g) = [g (), g ()]
     ```
 
-  _How many different lists of `()` are there?_
+    _How many different lists of `()` are there?_
 
     Infinitely many, depending on how many copies of `()` are in the list - i.e.
     `[]`, `[()]`, `[(), ()]`, `[(), (), ()]` and so on.  These are in 1-1
