@@ -119,6 +119,13 @@
     obvious (Reader g) = Just (g ())
     ```
 
+- These two natural transformations are in 1-1 correspondence with the two
+  members of `Maybe ()`, namely `Nothing` and `Just ()`.
+
+- In general for every type `e` you can define a family of natural
+  transformations from `Reader e` to any other functor `f`.  The members of this
+  family are in 1-1 correspondence with the elements of `f e`
+
 
 ## Challenges
 
