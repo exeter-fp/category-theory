@@ -1,6 +1,6 @@
 # Natural transformations
 
-Functors can be though of as embedding one category in another, the source categorying being a blue print.
+Functors can be thought of as embedding one category in another, the source categorying being a blue print.
 Natural transformations and mappings between functors, comparing the embedding process, in the same category.
 Called natural because are using morphisms (not adding new structure).
 
@@ -36,7 +36,7 @@ You can say a α:
 
 ![](naturality.jpg)
 
-A **Natural isomorphism** is defines as a α whose compoents are all isomorphisms (invertible morphisms), making 2 functors isomorphic.
+A **Natural isomorphism** is defined as a α whose compoents are all isomorphisms (invertible morphisms), making 2 functors isomorphic.
 
 ## Polymorphic functions
 
@@ -89,3 +89,85 @@ dumb (Reader _) = Nothing
 obvious (Reader g) = Just (g ())   -- g applies to the unit value, all we can do
 ```
 
+## Beyond naturality
+
+- Any polymorphic function between two functors is a NT (including standard algebraic data types)
+- Function types are contra-variant in arguments, so polymorphic function between two contravariant functors can be NT in the Cocategory of Haskell types, with a opposite notion of naturality.
+
+## Functor category
+
+- Objects are functors, morphisms are naturual transformations
+- There exists an identity NT
+- Morphisms must compose, so two NTs:
+
+![](5_vertical.jpg)
+
+```haskell
+αa :: F a -> G a
+βa :: G a -> H a
+      
+-- These morphisms are composable and their composition is another morphism:
+
+βa ∘ αa :: F a -> H a
+      
+- We will use this morphism as the component of the natural transformation β ⋅ α — the composition of two natural transformations β after α:
+
+(β ⋅ α)a = βa ∘ αa
+
+-- Looking at the digram, this is correct
+H f ∘ (β ⋅ α)a = (β ⋅ α)b ∘ F f
+```
+
+![](6_verticalnaturality.jpg)
+
+- Category of functors between C and D is wrritne as `Fun(C,D)` or `[C,D]` or sometimes `DC`
+![](6a_vertical.jpg)
+
+
+- (small) categories are objects in Cat
+- morphisms in Cat are Functors
+- Cat(C,D) is set of functors between C and D
+- A functor category [C, D] is also a set of functors between two categories (plus natural transformations as morphisms). Its objects are the same as the members of Cat(C, D).
+
+![](7_cathomset.jpg)
+
+## 2 categories
+
+- Cats morphisms are functors, but functors (as a hom-set) aren't just a set, they have richer structure (they are a category themselves, with NTs as their morphisms).  
+- This richer structure is called a 2-category, where the 1-morphisms also have 2-morphisms between them)
+
+In Cat this is:
+- Objects: (Small) categories
+- 1-morphisms: Functors between categories
+- 2-morphisms: Natural transformations between functors.
+
+Instead of a Hom-set between two categories C and D, we have a Hom-category — the functor category DC. We have regular functor composition: a functor F from DC composes with a functor G from ED to give G ∘ F from EC. But we also have composition inside each Hom-category — vertical composition of natural transformations, or 2-morphisms, between functors.
+
+![](8_cat-2-cat.jpg)
+
+### Composition in 2 categories
+
+```
+-- two functors in Cat can be composed
+F :: C -> D
+G :: D -> E
+G ∘ F :: C -> E
+
+-- two natural transforms on F and G
+α :: F -> F'
+β :: G -> G'
+```
+
+![](10_horizontal.jpg)
+
+Notice that we cannot apply vertical composition to this pair, because the target of α is different from the source of β. In fact they are members of two different functor categories: D C and E D. We can, however, apply composition to the functors F’ and G’, because the target of F’ is the source of G’ — it’s the category D. What’s the relation between the functors G’∘ F’ and G ∘ F?
+
+Having α and β at our disposal, can we define a natural transformation from G ∘ F to G’∘ F’? Let me sketch the construction.
+
+![](9_horizontal.jpg)
+
+### Challenges
+
+1. None -> [],Some a -> [a].  Show we can map or transform first with equatiorial reasoning.
+2. Reader () a -> [a], Reader () a -> [].  An infinite number.
+3. Two, Some and None.  Some can be some true or sum false

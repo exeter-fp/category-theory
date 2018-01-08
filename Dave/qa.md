@@ -12,3 +12,9 @@
 - Smallest blocks via factorisation, i.e. ranking for simplest
 - Equality / Sameness as isomorphism
 - Relationships matter over eveything (its all there is), and their patterns.
+
+# Scrarch
+
+- Bees and primate numbers
+- Pertubation theory (solvable composable, and non)
+- ad-hoc (oo, type classes) vs parametric polymorphisms (just one, denotational semantics)
