@@ -37,7 +37,7 @@
 - There are now two ways to get from `F a` to `G b`, which must commute, which
   implies the following _naturality condition_:
 
-  <code>G f ∘ α<sub>a</sub> = α<sub>b</sub> ∘ F f
+  <code>G f ∘ α<sub>a</sub> = α<sub>b</sub> ∘ F f</code>
 
 - Natural transformations map morphisms in `C` to commuting naturality squares
   in `D`:
