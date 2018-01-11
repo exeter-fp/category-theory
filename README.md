@@ -44,6 +44,7 @@ Hmm - sounds promising, but after a brief glance, I thought it looked quite adva
 ## Related
 
 - [Blog article about ADTs, differentation of types, etc](http://chris-taylor.github.io/blog/2013/02/10/the-algebra-of-algebraic-data-types/)
+- math3ma: [What is Category Theory Anyway?](http://www.math3ma.com/mathema/2017/1/17/what-is-category-theory-anyway)
 
 ## Haskell
 
