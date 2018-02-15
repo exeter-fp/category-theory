@@ -22,6 +22,7 @@ I think this is the bible of category theory :
 
 ## David I. Spivak
 
+- [David Spivak - Category Theory - Part 1 of 6 - @ Lambda Conf 2017](https://www.youtube.com/watch?v=IBeceQHz2x8&feature=em-subs_digest-vrecs)
 - [Category theory for the Sciences](https://github.com/mmai/Category-Theory-for-the-Sciences)
 
 ## Mark Seemann
